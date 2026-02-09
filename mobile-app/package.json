@@ -1,6 +1,6 @@
 {
   "name": "baitworm-canada",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Baitworm Canada - Kingston, Ontario's Premium Live Bait App for iOS & Android",
   "main": "App.js",
   "scripts": {
@@ -12,22 +12,27 @@
     "build:ios": "eas build --platform ios",
     "build:all": "eas build --platform all",
     "submit:android": "eas submit --platform android",
-    "submit:ios": "eas submit --platform ios"
+    "submit:ios": "eas submit --platform ios",
+    "lint": "eslint . --ext .js,.jsx",
+    "test": "jest",
+    "prebuild": "expo prebuild"
   },
   "dependencies": {
     "expo": "~50.0.0",
     "expo-status-bar": "~1.11.0",
+    "expo-location": "~16.5.0",
+    "expo-notifications": "~0.27.0",
+    "expo-linking": "~6.2.0",
     "react": "18.2.0",
     "react-native": "0.73.4",
-    "@react-navigation/native": "^6.1.9",
-    "@react-navigation/bottom-tabs": "^6.5.11",
     "react-native-screens": "~3.29.0",
     "react-native-safe-area-context": "4.8.2",
-    "expo-location": "~16.5.0",
-    "expo-notifications": "~0.27.0"
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/bottom-tabs": "^6.5.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "eslint": "^8.50.0"
   },
   "private": true,
   "author": "Baitworm Canada Ltd.",
