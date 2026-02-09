@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Baitworm Canada | Kingston, Ontario’s Premium Live Bait</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#d52b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Baitworm Canada">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <meta name="description" content="Kingston, Ontario's premium live bait worm farm. 100% Canadian-raised nightcrawlers and red wigglers. Freshly Farmed. Fish Approved.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Baitworm Canada">
+  <meta name="msapplication-TileColor" content="#d52b1e">
 </head>
 <body>
   <nav class="navbar">
@@ -251,14 +263,62 @@
     </div>
   </footer>
 
-  <div class="app-banner">
+  <div class="app-banner" id="app-banner">
     <div class="container app-banner-content">
-      <p>📱 <strong>Get the Baitworm Canada App!</strong> Order bait, track deliveries, and find fishing spots across Ontario. Available on iOS &amp; Android.</p>
+      <p>📱 <strong>Install Baitworm Canada!</strong> Add to your home screen for the full app experience. Works offline!</p>
       <div class="app-buttons">
-        <a href="#" class="btn btn-app"> App Store</a>
-        <a href="#" class="btn btn-app">▶ Google Play</a>
+        <button id="install-btn" class="btn btn-app" style="display:none;">Install App</button>
+        <span class="app-hint">On iOS: tap Share ➡ Add to Home Screen</span>
       </div>
     </div>
   </div>
+
+  <!-- PWA Service Worker Registration & Install Prompt -->
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/baitworm/sw.js')
+          .then(reg => console.log('Service Worker registered:', reg.scope))
+          .catch(err => console.log('SW registration failed:', err));
+      });
+    }
+
+    // PWA Install Prompt (Android/Desktop Chrome)
+    let deferredPrompt;
+    const installBtn = document.getElementById('install-btn');
+    const appHint = document.querySelector('.app-hint');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'inline-block';
+      if (appHint) appHint.style.display = 'none';
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const result = await deferredPrompt.userChoice;
+          console.log('Install result:', result.outcome);
+          deferredPrompt = null;
+          installBtn.style.display = 'none';
+        }
+      });
+    }
+
+    // Detect if already installed
+    window.addEventListener('appinstalled', () => {
+      console.log('Baitworm Canada PWA installed!');
+      const banner = document.getElementById('app-banner');
+      if (banner) banner.style.display = 'none';
+    });
+
+    // Hide iOS hint if not on iOS
+    if (appHint && !(/iPad|iPhone|iPod/.test(navigator.userAgent))) {
+      appHint.style.display = 'none';
+    }
+  </script>
 </body>
 </html>
