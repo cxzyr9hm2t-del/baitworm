@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#d52b1e"/>
+  <rect x="16" y="16" width="480" height="480" rx="48" fill="#1a1a2e"/>
+  <!-- Maple Leaf -->
+  <g transform="translate(256, 180) scale(2.5)" fill="#d52b1e">
+    <path d="M0,-40 L5,-15 L25,-20 L15,-5 L30,5 L15,5 L20,20 L5,15 L0,35 L-5,15 L-20,20 L-15,5 L-30,5 L-15,-5 L-25,-20 L-5,-15 Z"/>
+  </g>
+  <!-- Text: BW -->
+  <text x="256" y="380" font-family="Arial, Helvetica, sans-serif" font-size="120" font-weight="800" fill="#ffffff" text-anchor="middle">BW</text>
+  <!-- Subtitle -->
+  <text x="256" y="440" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="600" fill="#d4a853" text-anchor="middle">CANADA</text>
+  <!-- Small maple leaf accent -->
+  <text x="256" y="480" font-family="Arial" font-size="24" fill="#d52b1e" text-anchor="middle">✧ Kingston, ON ✧</text>
+</svg>
