@@ -1,14 +1,12 @@
-// Baitworm Canada - Service Worker
+// Baitworm Canada - Service Worker v2
 // Enables offline support and PWA caching
-
-const CACHE_NAME = 'baitworm-canada-v1';
+const CACHE_NAME = 'baitworm-canada-v2';
 const ASSETS_TO_CACHE = [
   '/baitworm/',
   '/baitworm/index.html',
   '/baitworm/css/style.css',
   '/baitworm/manifest.json',
-  '/baitworm/icons/icon-192.png',
-  '/baitworm/icons/icon-512.png'
+  '/baitworm/icons/icon.svg'
 ];
 
 // Install - cache core assets
@@ -39,29 +37,13 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch - serve from cache, fallback to network
+// Fetch - network first, fallback to cache (prevents stale content)
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Return cached version and update in background
-        event.waitUntil(
-          fetch(event.request).then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(event.request, networkResponse);
-              });
-            }
-          }).catch(() => {})
-        );
-        return cachedResponse;
-      }
-
-      // Not in cache - fetch from network
-      return fetch(event.request).then((networkResponse) => {
+    fetch(event.request)
+      .then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {
           const responseClone = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
@@ -69,12 +51,14 @@ self.addEventListener('fetch', (event) => {
           });
         }
         return networkResponse;
-      }).catch(() => {
-        // Offline fallback for navigation requests
-        if (event.request.mode === 'navigate') {
-          return caches.match('/baitworm/index.html');
-        }
-      });
-    })
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) return cachedResponse;
+          if (event.request.mode === 'navigate') {
+            return caches.match('/baitworm/index.html');
+          }
+        });
+      })
   );
 });
