@@ -1,74 +1,122 @@
-# 🪱 Baitworm
+# 🍁 Baitworm Canada
 
-### *Freshly Farmed. Fish Approved.*
+### Kingston, Ontario’s Premium Live Bait Worm Farm
 
-**Premium Live Bait Worm Farming & Supply Business**
+> **Freshly Farmed in Kingston, ON. Fish Approved.** 🇨🇦
 
 ---
 
 ## About
 
-Baitworm is a live bait worm farming and distribution startup dedicated to providing premium-quality live bait worms to recreational anglers, fishing charter operators, bait shops, and sporting goods retailers. We combine sustainable vermiculture practices with modern packaging and direct-to-consumer delivery logistics.
+**Baitworm Canada** is a proudly Canadian live bait worm farming and distribution enterprise headquartered in **Kingston, Ontario**. We breed, raise, harvest, and sell premium-quality live bait worms to recreational anglers, fishing charter operators, bait shops, and sporting goods retailers across Canada.
 
-## Our Products
+Located where the **St. Lawrence River meets Lake Ontario**, Kingston is one of Canada’s top freshwater fishing destinations. Our farm takes advantage of Eastern Ontario’s rich limestone soil, ideal moisture levels, and temperate climate.
 
-| Product | Description | Sizes Available |
-|---------|-------------|-----------------|
-| **Canadian Nightcrawlers** | The most popular live bait worm in North America — large, active, and irresistible to bass, walleye, and trout | Cups of 12, 24; Flats of 250, 500 |
-| **European Nightcrawlers** | Hardy, active worms favored for panfish and general freshwater fishing | Cups of 24, 50; Bulk |
-| **Red Wigglers** | Perfect for panfish, perch, and ice fishing — fast breeders and easy to farm | Cups of 30, 50; Bulk by the pound |
-| **Vermicompost** | Premium organic worm castings fertilizer — a valuable byproduct | 5 lb bags, 25 lb bags |
-| **Subscription Bait Box** | Monthly curated live bait delivered to your door | Monthly / Seasonal plans |
+**Every worm we sell is 100% Canadian-raised. Never imported.**
 
-## Why Baitworm?
+---
 
-- **Consistent Year-Round Supply** — Climate-controlled indoor farming means fresh bait in every season
-- - **Superior Quality** — Healthy, active worms raised in optimized conditions
-  - - **Eco-Friendly Packaging** — Recyclable and compostable materials
-    - - **Fast Delivery** — 2-day shipping nationwide with cold-chain packaging
-      - - **Freshness Guarantee** — Every order backed by our satisfaction promise
-        - - **Sustainable Farming** — Environmentally responsible vermiculture practices
-         
-          - ## Business Model
-         
-          - Baitworm serves four primary market segments:
-         
-          - 1. **Direct-to-Consumer** — Online ordering via baitworm.com with subscription options
-            2. 2. **Wholesale to Bait Shops** — Scheduled delivery routes with volume pricing
-               3. 3. **Fishing Charters & Guides** — Seasonal contracts for reliable bulk supply
-                  4. 4. **Sporting Goods Retailers** — Retail-ready branded packaging for store shelves
-                    
-                     5. ## Tech Stack (Website)
-                    
-                     6. - HTML5 / CSS3
-                        - - Responsive design
-                          - - GitHub Pages hosting
-                           
-                            - ## Project Structure
-                           
-                            - ```
-                              baitworm/
-                              ├── index.html          # Landing page
-                              ├── css/
-                              │   └── style.css       # Stylesheet
-                              ├── images/             # Brand assets
-                              └── README.md           # This file
-                              ```
+## Products
 
-                              ## Getting Started
+| Product | Description | Packaging |
+|---------|-------------|-----------|
+| 🪱 Canadian Nightcrawlers | The legendary Canadian dew worm — #1 live bait in North America | Cups of 12, 24 / Flats of 250, 500 |
+| 🪱 European Nightcrawlers | Hardy, active worms perfect for Ontario’s variable climate | Cups of 24, 50 / Bulk |
+| 🔴 Red Wigglers | Popular for panfish, perch, and ice fishing on Rideau Canal | Cups of 30, 50 / Bulk by the pound |
+| 🌱 Vermicompost | Premium organic worm castings for Canadian gardens | 5 lb / 25 lb bags |
+| 📦 Subscription Bait Box | Monthly/seasonal curated live bait delivery | Monthly & Seasonal plans |
+| 🏢 Wholesale Programs | Supply agreements for Canadian bait shops & retailers | Custom volume pricing |
 
-                              Visit our live site: [Baitworm Landing Page](https://cxzyr9hm2t-del.github.io/baitworm/)
+---
 
-                              ## Contact
+## Why Baitworm Canada?
 
-                              - **Email:** info@baitworm.com
-                              - - **Location:** Rural USA
-                                - - **Founded:** 2026
-                                 
-                                  - ## License
-                                 
-                                  - This project is proprietary. All rights reserved.
-                                 
-                                  - ---
+- 🍁 **100% Canadian** — Bred and raised in Kingston, ON. Never imported.
+- ⭐ **Superior Quality** — Optimised conditions for the healthiest worms.
+- ♻️ **Eco-Friendly** — Recyclable and compostable packaging.
+- 🚚 **Fast Canadian Shipping** — Next-day in Eastern Ontario, 2-day across Ontario & Quebec.
+- ✅ **Freshness Guarantee** — 100% satisfaction or we make it right.
+- 🌿 **Sustainable Farming** — Fed recycled food waste and organic materials.
 
-                                  *Built with passion for the outdoors and sustainable farming.*
+---
+
+## Business Details
+
+- **Headquarters:** Kingston, Ontario, Canada K7L
+- **Phone:** (613) 555-BAIT
+- **Email:** info@baitworm.ca
+- **Website:** [baitworm.ca](https://cxzyr9hm2t-del.github.io/baitworm/)
+- **Industry:** Canadian Recreational Fishing & Vermiculture
+- **Market Size:** $8.3B Canadian recreational fishing industry / 3.3M+ anglers
+
+---
+
+## Service Areas
+
+Kingston • Ottawa • Toronto • Montreal • All of Ontario • Nationwide across Canada
+
+### Ontario Fishing Spots We Serve
+
+- Lake Ontario
+- St. Lawrence River
+- Rideau Canal
+- Bay of Quinte
+
+---
+
+## Tech Stack
+
+- **Website:** HTML5, CSS3 (responsive)
+- **Mobile App:** React Native / Expo (iOS & Android)
+- **Hosting:** GitHub Pages
+- **Shipping:** Canada Post, Purolator
+
+---
+
+## Project Structure
+
+```
+baitworm/
+├── index.html              # Main website
+├── css/
+│   └── style.css           # Canadian red & white theme
+├── mobile-app/
+│   ├── App.js              # React Native app entry
+│   ├── app.json            # Expo configuration
+│   └── package.json        # Dependencies
+└── README.md               # This file
+```
+
+---
+
+## Mobile App
+
+The **Baitworm Canada** app is available for iOS and Android, built with React Native and Expo.
+
+**Features:**
+- Browse and order live bait products
+- Track deliveries across Canada
+- Find fishing spots in Ontario
+- Manage subscriptions
+- Contact support
+
+**Get Started:**
+```bash
+cd mobile-app
+npm install
+npx expo start
+```
+
+---
+
+## Getting Started
+
+Visit our website: **[Baitworm Canada](https://cxzyr9hm2t-del.github.io/baitworm/)**
+
+---
+
+## License
+
+© 2026 Baitworm Canada Ltd. All rights reserved.
+
+Proudly Canadian 🇨🇦 | Kingston, Ontario
