@@ -538,3 +538,32 @@ body {
         flex-direction: column;
     }
     }
+
+
+/* === PWA INSTALL HINT === */
+.app-hint {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+#install-btn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* Standalone mode adjustments (when installed as PWA) */
+@media (display-mode: standalone) {
+    .navbar {
+        padding-top: 25px;
+    }
+
+    .app-banner {
+        display: none;
+    }
+}
