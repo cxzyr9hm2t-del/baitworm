@@ -9,7 +9,10 @@
   "background_color": "#1a1a2e",
   "theme_color": "#d52b1e",
   "lang": "en-CA",
-  "categories": ["shopping", "lifestyle"],
+  "dir": "ltr",
+  "categories": ["shopping", "lifestyle", "sports"],
+  "id": "/baitworm/",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "icons/icon.svg",
@@ -28,17 +31,29 @@
     {
       "name": "Shop Products",
       "short_name": "Products",
-      "url": "/baitworm/#products"
+      "url": "/baitworm/#products",
+      "description": "Browse our live bait products"
     },
     {
       "name": "View Pricing",
       "short_name": "Pricing",
-      "url": "/baitworm/#pricing"
+      "url": "/baitworm/#pricing",
+      "description": "See current pricing for all products"
     },
     {
       "name": "Contact Us",
       "short_name": "Contact",
-      "url": "/baitworm/#contact"
+      "url": "/baitworm/#contact",
+      "description": "Get in touch with Baitworm Canada"
+    },
+    {
+      "name": "Fishing Spots",
+      "short_name": "Spots",
+      "url": "/baitworm/#spots",
+      "description": "Find Ontario fishing spots near Kingston"
     }
-  ]
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "protocol_handlers": []
 }
