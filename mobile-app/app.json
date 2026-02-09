@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Baitworm Canada",
+    "name": "Baitworm — Handcrafted Soft Baits",
     "slug": "baitworm-canada",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -10,56 +10,30 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#d52b1e"
+      "backgroundColor": "#1c1c1c"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "ca.baitworm.app",
-      "buildNumber": "1.1.0",
-      "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "Baitworm Canada uses your location to find nearby fishing spots in Ontario.",
-        "ITSAppUsesNonExemptEncryption": false
-      },
-      "config": {
-        "usesNonExemptEncryption": false
-      }
+      "buildNumber": "2.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#d52b1e"
+        "backgroundColor": "#1c1c1c"
       },
       "package": "ca.baitworm.app",
-      "versionCode": 2,
-      "permissions": [
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
-      ],
-      "googleServicesFile": "./google-services.json"
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": [
-      "expo-location"
-    ],
-    "description": "Baitworm Canada - Kingston, Ontario's premium live bait worm farm. Order fresh Canadian nightcrawlers, red wigglers, and more. Find fishing spots across Ontario.",
+    "description": "Handcrafted soft bait worms from Kingston, Ontario. Born in a garage, built for the water.",
     "githubUrl": "https://github.com/cxzyr9hm2t-del/baitworm",
-    "owner": "baitworm-canada",
     "extra": {
-      "eas": {
-        "projectId": "baitworm-canada"
-      }
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "runtimeVersion": {
-      "policy": "sdkVersion"
+      "eas": { "projectId": "baitworm-canada" }
     }
   }
 }
