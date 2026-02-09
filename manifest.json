@@ -1,59 +1,25 @@
 {
-  "name": "Baitworm Canada",
+  "name": "Baitworm Canada — Handcrafted Soft Baits",
   "short_name": "Baitworm",
-  "description": "Kingston, Ontario's Premium Live Bait Worm Farm. Order fresh Canadian nightcrawlers, red wigglers, and more. 100% Canadian-Raised.",
+  "description": "Handcrafted soft bait worms from Kingston, Ontario. Born in a garage, built for the water.",
   "start_url": "/baitworm/",
   "scope": "/baitworm/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#1a1a2e",
-  "theme_color": "#d52b1e",
+  "background_color": "#faf8f5",
+  "theme_color": "#1c1c1c",
   "lang": "en-CA",
   "dir": "ltr",
   "categories": ["shopping", "lifestyle", "sports"],
   "id": "/baitworm/",
-  "prefer_related_applications": false,
   "icons": [
-    {
-      "src": "icons/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "icons/icon.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "maskable"
-    }
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "maskable" }
   ],
   "shortcuts": [
-    {
-      "name": "Shop Products",
-      "short_name": "Products",
-      "url": "/baitworm/#products",
-      "description": "Browse our live bait products"
-    },
-    {
-      "name": "View Pricing",
-      "short_name": "Pricing",
-      "url": "/baitworm/#pricing",
-      "description": "See current pricing for all products"
-    },
-    {
-      "name": "Contact Us",
-      "short_name": "Contact",
-      "url": "/baitworm/#contact",
-      "description": "Get in touch with Baitworm Canada"
-    },
-    {
-      "name": "Fishing Spots",
-      "short_name": "Spots",
-      "url": "/baitworm/#spots",
-      "description": "Find Ontario fishing spots near Kingston"
-    }
-  ],
-  "screenshots": [],
-  "related_applications": [],
-  "protocol_handlers": []
+    { "name": "Shop Soft Baits", "short_name": "Baits", "url": "/baitworm/#products" },
+    { "name": "The Garage", "short_name": "Garage", "url": "/baitworm/#garage" },
+    { "name": "Pricing", "short_name": "Pricing", "url": "/baitworm/#pricing" },
+    { "name": "Contact", "short_name": "Contact", "url": "/baitworm/#contact" }
+  ]
 }
