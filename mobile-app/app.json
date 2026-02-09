@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Baitworm Canada",
+    "slug": "baitworm-canada",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#d52b1e"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "ca.baitworm.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Baitworm Canada uses your location to find nearby fishing spots in Ontario."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#d52b1e"
+      },
+      "package": "ca.baitworm.app",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": "Baitworm Canada - Kingston, Ontario's premium live bait worm farm. Order fresh Canadian nightcrawlers, red wigglers, and more. Find fishing spots across Ontario.",
+    "githubUrl": "https://github.com/cxzyr9hm2t-del/baitworm",
+    "extra": {
+      "eas": {
+        "projectId": "baitworm-canada"
+      }
+    }
+  }
+}
