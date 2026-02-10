@@ -831,3 +831,615 @@ h2 {
   .navbar { padding-top: 28px; }
   .app-banner { display: none; }
 }
+
+
+/* =====================================================
+   VISUAL ENHANCEMENTS — PREMIUM EDITION
+   ===================================================== */
+
+/* === FILM GRAIN TEXTURE (subtle) === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* === HERO ENHANCEMENTS === */
+.hero {
+  background: radial-gradient(ellipse at 30% 20%, rgba(180,83,9,0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(30,58,95,0.12) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 50%, rgba(54,83,20,0.08) 0%, transparent 60%),
+              var(--ink);
+  padding: 140px 0 120px;
+}
+
+.hero h1 {
+  background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 40%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 4rem;
+  letter-spacing: -2px;
+}
+
+.hero-eyebrow {
+  position: relative;
+  display: inline-block;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rust-light));
+}
+.hero-eyebrow::before { right: calc(100% + 16px); }
+.hero-eyebrow::after { left: calc(100% + 16px); background: linear-gradient(90deg, var(--rust-light), transparent); }
+
+/* Hero CTA glow */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--rust-light), var(--rust-dark), var(--rust-light));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  filter: blur(8px);
+}
+.btn-primary:hover::before { opacity: 0.6; }
+
+/* Shimmer on outline buttons */
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+}
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.08) 50%, transparent 70%);
+  transform: rotate(25deg);
+  animation: btnShimmer 4s ease infinite;
+}
+@keyframes btnShimmer {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+/* === SECTION DECORATIVE BACKGROUNDS === */
+#story {
+  position: relative;
+}
+#story::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(180,83,9,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#techniques {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(180,83,9,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(30,58,95,0.03) 0%, transparent 50%),
+    var(--cream);
+}
+
+/* Section divider lines */
+.section + .section-dark::before,
+.section-dark + .section::before {
+  content: '';
+  display: block;
+  height: 0;
+}
+
+/* === TRUST BAR ENHANCEMENTS === */
+.trust-bar {
+  background: linear-gradient(180deg, var(--white), var(--cream));
+  position: relative;
+  overflow: hidden;
+}
+.trust-bar::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--rust), transparent);
+  border-radius: 2px;
+}
+.trust-num {
+  background: linear-gradient(135deg, var(--rust), var(--rust-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === GLASS CARD GLOW ON HOVER === */
+.glass-card {
+  position: relative;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(180,83,9,0.15), transparent 50%, rgba(30,58,95,0.1));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(12px);
+}
+.glass-card:hover::before { opacity: 1; }
+
+.glass-card-dark {
+  position: relative;
+}
+.glass-card-dark::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(180,83,9,0.2), transparent 50%, rgba(54,83,20,0.15));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(16px);
+}
+.glass-card-dark:hover::before { opacity: 1; }
+
+/* === PRODUCT CARD VISUAL UPGRADE === */
+.product-card {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.04);
+  position: relative;
+}
+.product-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rust), var(--rust-light));
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.product-card:hover::after { width: 60%; }
+.product-card:hover {
+  box-shadow: 0 20px 60px rgba(180,83,9,0.08), 0 8px 24px rgba(0,0,0,0.06);
+  border-color: rgba(180,83,9,0.1);
+}
+
+/* Product canvas glow */
+.product-3d {
+  position: relative;
+}
+.product-3d::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* Animated badge pulse */
+.product-badge {
+  animation: badgePulse 3s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(180,83,9,0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(180,83,9,0); }
+}
+.product-badge-new { animation-name: badgePulseGreen; }
+@keyframes badgePulseGreen {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(54,83,20,0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(54,83,20,0); }
+}
+
+/* Colour dot active ring */
+.colour-dot {
+  position: relative;
+}
+.colour-dot:hover {
+  box-shadow: 0 0 0 3px rgba(180,83,9,0.2);
+}
+
+/* === VALUE CARD ACCENT LINE === */
+.value-card {
+  border-left: 3px solid transparent;
+  transition: all 0.4s ease, border-color 0.4s ease;
+}
+.value-card:hover {
+  border-left-color: var(--rust);
+}
+.value-icon {
+  filter: grayscale(0.3);
+  transition: filter 0.3s ease;
+}
+.value-card:hover .value-icon {
+  filter: grayscale(0);
+  transform: scale(1.15);
+}
+
+/* === BROTHER CARD GRADIENT TOP === */
+.brother-card {
+  position: relative;
+  overflow: hidden;
+}
+.brother-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rust), var(--rust-light), var(--rust));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.brother-card:hover::before { opacity: 1; }
+.brother-avatar {
+  transition: transform 0.4s ease;
+}
+.brother-card:hover .brother-avatar {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+/* === GARAGE VISUAL UPGRADES === */
+.garage-layout {
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 0 60px rgba(180,83,9,0.05) inset;
+}
+.station {
+  position: relative;
+  overflow: hidden;
+}
+.station::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+.station:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.flow-arrow {
+  background: linear-gradient(90deg, transparent, rgba(180,83,9,0.1), transparent);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.garage-stat {
+  position: relative;
+}
+.garage-stat::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rust-light), transparent);
+}
+
+/* === TECHNIQUE CARDS === */
+.technique-card {
+  position: relative;
+  overflow: hidden;
+}
+.technique-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at top right, rgba(180,83,9,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.technique-icon {
+  transition: transform 0.4s ease;
+}
+.technique-card:hover .technique-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* === SPECIES CARDS === */
+.species-card {
+  transition: all 0.4s ease;
+}
+.species-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+}
+.species-icon {
+  transition: transform 0.4s ease;
+}
+.species-card:hover .species-icon {
+  transform: scale(1.3);
+}
+
+/* === REVIEW CARDS === */
+.review-card {
+  position: relative;
+  overflow: hidden;
+}
+.review-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-family: var(--serif);
+  font-size: 5rem;
+  color: rgba(180,83,9,0.06);
+  line-height: 1;
+  pointer-events: none;
+}
+.review-stars {
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px rgba(217,119,6,0.3);
+}
+
+/* === REPORT CARDS === */
+.report-card {
+  position: relative;
+  overflow: hidden;
+}
+.report-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--rust), var(--water), var(--forest));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.report-card:hover::before { opacity: 1; }
+.report-conditions {
+  background: rgba(0,0,0,0.03);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* === REWARDS TIER GLOW === */
+.tier-card.tier-featured {
+  box-shadow: 0 0 40px rgba(180,83,9,0.1), 0 4px 24px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.06);
+}
+.tier-card.tier-featured::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--rust), var(--rust-dark), var(--rust-light), var(--rust));
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(12px);
+  animation: tierGlow 4s ease-in-out infinite alternate;
+}
+@keyframes tierGlow {
+  0% { opacity: 0.2; }
+  100% { opacity: 0.4; }
+}
+
+/* === FAQ VISUAL === */
+.faq-item {
+  transition: all 0.3s ease;
+}
+.faq-open {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border-color: rgba(180,83,9,0.15);
+}
+.faq-question:hover {
+  color: var(--rust);
+}
+
+/* === NEWSLETTER CARD UPGRADE === */
+.newsletter-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(180,83,9,0.15);
+}
+.newsletter-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(180,83,9,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* === CONTACT FORM GLASS === */
+.contact-form {
+  border: 1px solid rgba(180,83,9,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+}
+
+/* === SOCIAL LINK GLOW === */
+.social-link:hover {
+  box-shadow: 0 4px 16px rgba(180,83,9,0.3);
+}
+
+/* === FOOTER SUBTLE GRADIENT === */
+.footer {
+  background: linear-gradient(180deg, var(--ink) 0%, #141414 100%);
+  position: relative;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180,83,9,0.3), transparent);
+}
+
+/* === SCROLL TO TOP GLOW === */
+.scroll-top {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.scroll-top:hover {
+  box-shadow: 0 4px 24px rgba(180,83,9,0.4);
+}
+
+/* === ANNOUNCEMENT BAR SHIMMER === */
+.announcement-bar {
+  position: relative;
+  overflow: hidden;
+}
+.announcement-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: announcementShimmer 5s ease-in-out infinite;
+}
+@keyframes announcementShimmer {
+  0% { left: -50%; }
+  100% { left: 150%; }
+}
+
+/* === H2 DECORATIVE UNDERLINE === */
+h2 {
+  position: relative;
+  padding-bottom: 16px;
+}
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rust), var(--rust-light));
+  border-radius: 2px;
+}
+.section-dark h2::after {
+  background: linear-gradient(90deg, var(--rust-light), var(--rust));
+}
+
+/* === SECTION LABEL ENHANCEMENT === */
+.section-label {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 1px;
+}
+.section-label::before {
+  right: calc(100% + 10px);
+  background: linear-gradient(90deg, transparent, var(--rust));
+}
+.section-label::after {
+  left: calc(100% + 10px);
+  background: linear-gradient(90deg, var(--rust), transparent);
+}
+.section-dark .section-label::before {
+  background: linear-gradient(90deg, transparent, var(--rust-light));
+}
+.section-dark .section-label::after {
+  background: linear-gradient(90deg, var(--rust-light), transparent);
+}
+
+/* === SMOOTH SECTION TRANSITIONS === */
+.section, .section-dark {
+  position: relative;
+}
+
+/* === SPLIT NOTE GLOW === */
+.split-note {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(180,83,9,0.1);
+}
+
+/* === PRODUCT PRICE GLOW === */
+.product-price {
+  text-shadow: 0 0 20px rgba(180,83,9,0.15);
+}
+
+/* === QUICKVIEW ENHANCEMENT === */
+.quickview-visual {
+  background: linear-gradient(135deg, var(--sand), #ece5de);
+  position: relative;
+}
+.quickview-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(180,83,9,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* === CART DRAWER UPGRADE === */
+.cart-drawer {
+  border-left: 1px solid rgba(0,0,0,0.06);
+}
+
+/* === RESPONSIVE VISUAL ADJUSTMENTS === */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.4rem;
+    letter-spacing: -1px;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    width: 24px;
+  }
+  .section-label::before,
+  .section-label::after {
+    width: 16px;
+  }
+  body::before {
+    opacity: 0.015;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
