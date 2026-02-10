@@ -101,6 +101,9 @@
       <li role="none"><a href="#garage" role="menuitem">The Garage</a></li>
       <li role="none"><a href="#techniques" role="menuitem">Techniques</a></li>
       <li role="none"><a href="#reports" role="menuitem">Reports</a></li>
+      <li role="none"><a href="#community" role="menuitem">Community</a></li>
+      <li role="none"><a href="#blog" role="menuitem">Journal</a></li>
+      <li role="none"><a href="#events" role="menuitem">Events</a></li>
       <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
     </ul>
     <div class="nav-actions">
@@ -658,6 +661,133 @@
     </div>
   </div>
 </section>
+<!-- ===== LIVE CONDITIONS ===== -->
+<div class="section-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="divider-svg">
+    <path d="M0,30 C480,70 960,10 1440,50 L1440,80 L0,80 Z" fill="#f8f5f0"/>
+  </svg>
+</div>
+
+<section id="conditions" class="section reveal">
+  <div class="container">
+    <span class="section-label">— LIVE CONDITIONS —</span>
+    <h2 class="section-title">Fish Smarter</h2>
+    <p class="section-subtitle">Real-time weather, moon phase, and water data for Eastern Ontario.</p>
+    <div class="conditions-grid">
+      <div class="condition-card weather-card">
+        <div class="condition-icon">🌤️</div>
+        <h3>Kingston Weather</h3>
+        <div class="weather-data">
+          <span class="temp" id="weather-temp">--°C</span>
+          <span class="condition" id="weather-desc">Loading...</span>
+        </div>
+        <div class="weather-details">
+          <span>💨 <span id="weather-wind">--</span> km/h</span>
+          <span>💧 <span id="weather-humidity">--</span>%</span>
+          <span>📊 <span id="weather-pressure">--</span> hPa</span>
+        </div>
+      </div>
+      <div class="condition-card moon-card">
+        <div class="condition-icon" id="moon-icon">🌙</div>
+        <h3>Moon Phase</h3>
+        <div class="moon-data">
+          <span class="moon-phase" id="moon-phase">Calculating...</span>
+          <span class="moon-illumination" id="moon-illumination">--%</span>
+        </div>
+        <p class="moon-tip" id="moon-tip">Loading fishing tip...</p>
+      </div>
+      <div class="condition-card water-card">
+        <div class="condition-icon">🌊</div>
+        <h3>Water Conditions</h3>
+        <div class="water-data">
+          <span>🌡️ Surface: <strong id="water-temp">~2°C</strong></span>
+          <span>📏 Clarity: <strong>Moderate</strong></span>
+          <span>📈 Level: <strong>Normal</strong></span>
+        </div>
+        <p class="water-note">Rideau Canal · Updated hourly</p>
+      </div>
+      <div class="condition-card solunar-card">
+        <div class="condition-icon">☀️</div>
+        <h3>Solunar Forecast</h3>
+        <div class="solunar-data">
+          <div class="solunar-rating" id="solunar-rating">
+            <span class="star active">★</span><span class="star active">★</span><span class="star active">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <span class="solunar-label">Good Day to Fish</span>
+        </div>
+        <div class="solunar-times">
+          <span>🌅 Major: 6:45 AM – 8:45 AM</span>
+          <span>🌇 Minor: 12:30 PM – 1:30 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FISHING HOTSPOTS ===== -->
+<div class="section-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="divider-svg">
+    <path d="M0,50 C360,10 720,70 1080,20 C1260,10 1380,40 1440,60 L1440,80 L0,80 Z" fill="#1c1c1c"/>
+  </svg>
+</div>
+
+<section id="hotspots" class="section section-dark reveal">
+  <div class="container">
+    <span class="section-label">— HOTSPOTS —</span>
+    <h2 class="section-title">Where We Fish</h2>
+    <p class="section-subtitle">Our favourite Eastern Ontario waters. Tap a pin for species tips.</p>
+    <div class="hotspots-map-wrapper">
+      <div class="hotspots-map-placeholder">
+        <span class="map-emoji">🗺️</span>
+        <p>Interactive map loading...</p>
+        <small>Kingston &amp; Eastern Ontario fishing spots</small>
+      </div>
+    </div>
+    <div class="hotspots-pins">
+      <div class="hotspot-pin">
+        <span class="pin-icon">📍</span>
+        <div class="pin-info">
+          <h4>Rideau Canal</h4>
+          <p>Largemouth, Smallmouth · Best: May–Sep</p>
+          <span class="pin-bait">Try: Kingston Crawler</span>
+        </div>
+      </div>
+      <div class="hotspot-pin">
+        <span class="pin-icon">📍</span>
+        <div class="pin-info">
+          <h4>Bay of Quinte</h4>
+          <p>Walleye, Pike · Best: Mar–Nov</p>
+          <span class="pin-bait">Try: Quinte Craw</span>
+        </div>
+      </div>
+      <div class="hotspot-pin">
+        <span class="pin-icon">📍</span>
+        <div class="pin-info">
+          <h4>St. Lawrence River</h4>
+          <p>Musky, Smallmouth, Pike · Best: Jun–Oct</p>
+          <span class="pin-bait">Try: St. Lawrence Shad</span>
+        </div>
+      </div>
+      <div class="hotspot-pin">
+        <span class="pin-icon">📍</span>
+        <div class="pin-info">
+          <h4>Collins Bay</h4>
+          <p>Pike, Bass · Best: Apr–Aug</p>
+          <span class="pin-bait">Try: Ribbon Tail</span>
+        </div>
+      </div>
+      <div class="hotspot-pin">
+        <span class="pin-icon">📍</span>
+        <div class="pin-info">
+          <h4>Charleston Lake</h4>
+          <p>Lake Trout, Bass · Best: May–Oct</p>
+          <span class="pin-bait">Try: Signal Hill Grub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== SOCIAL HUB ===== -->
 <div class="section-divider" aria-hidden="true">
   <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="divider-svg">
