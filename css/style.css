@@ -1,3 +1,169 @@
+
+
+/* === FINAL POLISH & SPACING FIXES === */
+
+/* Tighten section spacing where wave dividers exist */
+.section-divider + .section,
+.section-divider + .section-dark {
+  padding-top: 3rem;
+}
+
+/* Reduce excess spacing after wave dividers */
+.section-divider {
+  margin-bottom: -2px;
+}
+
+/* Trust bar tighter padding */
+.trust-bar {
+  padding: 2.5rem 0 !important;
+}
+
+/* Smooth scroll-reveal on sections */
+.section,
+.section-dark {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Better focus outlines for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Product image area subtle gradient overlay */
+.product-image {
+  background: linear-gradient(180deg, #f9f6f2 0%, #ede8e0 100%) !important;
+  position: relative;
+}
+
+/* Enhanced review card quote marks styling */
+.review-card::before {
+  font-size: 4rem !important;
+  top: -0.5rem !important;
+  left: 1rem !important;
+  color: var(--rust) !important;
+  opacity: 0.2 !important;
+}
+
+/* Better star glow */
+.review-stars {
+  text-shadow: 0 0 8px rgba(212, 125, 70, 0.4) !important;
+  letter-spacing: 2px;
+}
+
+/* Nicer newsletter subscribe area */
+.newsletter-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Product badge enhanced pulse */
+.product-badge {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Better card shadow depth on hover */
+.glass-card:hover,
+.product-card:hover,
+.technique-card:hover,
+.species-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08) !important;
+}
+
+/* Dark section card hover improvements */
+.section-dark .glass-card:hover,
+.section-dark .brother-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.25) !important;
+}
+
+/* Scroll to top button polish */
+.scroll-top {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Smoother page transitions */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Cart badge enhanced visibility */
+.cart-count {
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(212, 125, 70, 0.4);
+}
+
+/* Contact form inputs focus state */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--rust) !important;
+  box-shadow: 0 0 0 3px rgba(212, 125, 70, 0.15);
+}
+
+/* Announcement bar text weight */
+.announcement-bar {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Nav logo hover */
+.nav-logo:hover {
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+/* Better button transitions */
+.btn, .btn-outline {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Product card name weight */
+.product-name {
+  font-weight: 600;
+}
+
+/* Garage station hover glow */
+.garage-station:hover {
+  box-shadow: 0 4px 20px rgba(212, 125, 70, 0.15);
+}
+
+/* Report card hover interactive feel */
+.report-card:hover {
+  cursor: pointer;
+}
+
+/* Tier card price emphasis */
+.tier-price {
+  font-weight: 800;
+}
+
+/* Better split note visual */
+.split-note {
+  letter-spacing: 0.5px;
+}
+
+/* FAQ answer readability */
+.faq-answer {
+  line-height: 1.7;
+}
 /* === THREE CAST BAITS — PROFESSIONAL EDITION === */
 /* Handcrafted Soft Plastics - Kingston, Ontario */
 
