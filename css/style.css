@@ -265,3 +265,125 @@ h2 { font-family: var(--serif); font-size: 2.5rem; text-align: center; margin-bo
   .navbar { padding-top: 28px; }
   .app-banner { display: none; }
 }
+
+
+/* === LIQUID GLASS UI === */
+.glass-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
+  transition: all 0.3s ease;
+}
+.glass-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6);
+  transform: translateY(-4px);
+}
+.glass-card-dark {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+}
+.glass-card-dark:hover {
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
+  transform: translateY(-4px);
+}
+
+/* === CART === */
+.cart-btn { background:none; border:none; color:var(--white); cursor:pointer; position:relative; padding:8px; }
+.cart-count { position:absolute; top:0; right:0; background:var(--rust); color:#fff; font-size:0.65rem; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.cart-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); opacity:0; visibility:hidden; z-index:2000; transition:all 0.3s; }
+.cart-overlay.open { opacity:1; visibility:visible; }
+.cart-drawer { position:fixed; top:0; right:-400px; width:380px; max-width:90vw; height:100vh; background:var(--cream); z-index:2001; transition:right 0.35s ease; display:flex; flex-direction:column; box-shadow:-4px 0 30px rgba(0,0,0,0.15); }
+.cart-drawer.open { right:0; }
+.cart-header { display:flex; justify-content:space-between; align-items:center; padding:20px 24px; border-bottom:1px solid var(--sand); }
+.cart-header h3 { font-family:var(--serif); font-size:1.2rem; }
+.cart-close { background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--ink); }
+.cart-shipping-bar { padding:16px 24px; background:var(--sand); }
+.shipping-progress { height:6px; background:var(--stone); border-radius:3px; overflow:hidden; }
+.shipping-fill { height:100%; background:linear-gradient(90deg,var(--rust),var(--rust-light)); border-radius:3px; transition:width 0.4s ease; }
+.shipping-msg { font-size:0.8rem; color:var(--ink-muted); margin-top:8px; text-align:center; }
+.cart-items { flex:1; overflow-y:auto; padding:16px 24px; }
+.cart-empty { text-align:center; color:var(--stone); font-style:italic; padding:40px 0; }
+.cart-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--sand); }
+.cart-item-info strong { font-size:0.9rem; }
+.cart-item-info small { color:var(--ink-muted); }
+.cart-item-actions { display:flex; align-items:center; gap:8px; }
+.cart-qty-btn { width:28px; height:28px; border:1px solid var(--stone); background:none; border-radius:4px; cursor:pointer; font-size:0.9rem; }
+.cart-remove { background:none; border:none; color:var(--stone); font-size:1.2rem; cursor:pointer; }
+.cart-footer { padding:20px 24px; border-top:1px solid var(--sand); }
+.cart-total { display:flex; justify-content:space-between; margin-bottom:16px; font-size:1.1rem; }
+.btn-block { width:100%; text-align:center; }
+.btn-sm { padding:10px 20px; font-size:0.82rem; }
+.btn-success { background:#059669!important; }
+
+/* === 3D PRODUCT VIEWER === */
+.product-3d { display:flex; justify-content:center; margin-bottom:16px; cursor:grab; }
+.product-3d:active { cursor:grabbing; }
+.bait-canvas { border-radius:var(--radius); }
+.product-price { font-family:var(--serif); font-size:1.4rem; color:var(--rust-light); margin:12px 0 8px; font-weight:700; }
+.product-price small { font-size:0.75rem; color:var(--stone); font-weight:400; }
+.product-card .add-to-cart { margin-top:8px; }
+
+/* === TECHNIQUES === */
+.techniques-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:48px; }
+.technique-card { padding:28px; border-radius:var(--radius); }
+.technique-icon { font-size:2rem; display:block; margin-bottom:12px; }
+.technique-card h3 { font-family:var(--serif); font-size:1.15rem; color:var(--white); margin-bottom:8px; }
+.technique-card p { font-size:0.9rem; color:var(--stone); line-height:1.7; margin-bottom:12px; }
+.hot-bait { font-size:0.8rem; color:var(--rust-light); font-weight:600; }
+.species-heading { font-family:var(--serif); font-size:1.6rem; text-align:center; color:var(--white); margin:64px 0 32px; }
+.species-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.species-card { padding:24px; border-radius:var(--radius); text-align:center; }
+.species-icon { font-size:1.8rem; display:block; margin-bottom:10px; }
+.species-card h4 { font-family:var(--serif); color:var(--white); margin-bottom:6px; }
+.species-card p { font-size:0.82rem; color:var(--stone); line-height:1.6; }
+
+/* === REVIEWS === */
+.reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.review-card { padding:28px; border-radius:var(--radius); }
+.review-stars { color:var(--rust-light); font-size:1.1rem; margin-bottom:12px; letter-spacing:2px; }
+.review-text { font-size:0.95rem; color:var(--ink-muted); line-height:1.7; margin-bottom:14px; font-style:italic; }
+.review-catch { font-size:0.82rem; color:var(--rust); margin-bottom:8px; padding:8px 12px; background:rgba(180,83,9,0.06); border-radius:6px; }
+.review-author { font-size:0.85rem; color:var(--ink); font-weight:500; margin-bottom:6px; }
+.review-verified { font-size:0.72rem; color:#059669; font-weight:600; letter-spacing:0.5px; }
+
+/* === FISHING REPORTS === */
+.reports-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.report-card { padding:28px; border-radius:var(--radius); }
+.report-date { font-size:0.72rem; color:var(--rust-light); letter-spacing:1px; text-transform:uppercase; font-weight:600; }
+.report-card h3 { font-family:var(--serif); font-size:1.15rem; color:var(--white); margin:8px 0 12px; }
+.report-card p { font-size:0.9rem; color:var(--stone); line-height:1.7; margin-bottom:14px; }
+.report-conditions { display:flex; gap:16px; margin-bottom:12px; font-size:0.8rem; color:var(--stone); }
+
+/* === REWARDS === */
+.rewards-tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.tier-card { padding:32px 24px; border-radius:var(--radius); text-align:center; }
+.tier-card.tier-featured { border:2px solid var(--rust); position:relative; }
+.tier-icon { font-size:2.5rem; display:block; margin-bottom:12px; }
+.tier-card h3 { font-family:var(--serif); font-size:1.3rem; margin-bottom:6px; }
+.tier-range { font-size:0.85rem; color:var(--rust); font-weight:600; margin-bottom:16px; }
+.tier-perks { list-style:none; text-align:left; }
+.tier-perks li { padding:6px 0; font-size:0.88rem; color:var(--ink-muted); border-bottom:1px solid var(--sand); }
+.tier-perks li::before { content:'\2713 '; color:var(--rust); font-weight:700; }
+.rewards-referral { text-align:center; padding:36px; margin-top:36px; border-radius:var(--radius); }
+.rewards-referral h3 { font-family:var(--serif); margin-bottom:10px; }
+.rewards-referral p { color:var(--ink-muted); margin-bottom:16px; }
+
+/* === RESPONSIVE ADDITIONS === */
+@media (max-width:768px) {
+  .techniques-grid { grid-template-columns:1fr; }
+  .species-grid { grid-template-columns:repeat(2,1fr); }
+  .reviews-grid { grid-template-columns:1fr; }
+  .reports-grid { grid-template-columns:1fr; }
+  .rewards-tiers { grid-template-columns:1fr; }
+  .cart-drawer { width:100%; max-width:100vw; }
+}
+@media (max-width:480px) {
+  .species-grid { grid-template-columns:1fr; }
+}
