@@ -30,6 +30,14 @@
 </head>
 <body>
 
+<!-- ===== ANNOUNCEMENT BAR ===== -->
+<div class="announcement-bar" id="announcement-bar">
+  <div class="container announcement-content">
+    <span>🎣 <strong>Winter Sale:</strong> 15% off all packs with code <strong>ICEOUT26</strong> — Free shipping over $75 in Ontario</span>
+    <button class="announcement-close" id="announcement-close" aria-label="Close announcement">&times;</button>
+  </div>
+</div>
+
 <!-- ===== CART DRAWER ===== -->
 <div class="cart-overlay" id="cart-overlay"></div>
 <div class="cart-drawer" id="cart-drawer">
@@ -47,6 +55,37 @@
   <div class="cart-footer" id="cart-footer" style="display:none">
     <div class="cart-total"><span>Total</span><strong id="cart-total-amount">$0.00</strong></div>
     <button class="btn btn-primary btn-block">Checkout</button>
+    <p class="cart-note">Taxes calculated at checkout. Canadian orders only.</p>
+  </div>
+</div>
+
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div class="modal-overlay" id="quickview-overlay"></div>
+<div class="quickview-modal" id="quickview-modal">
+  <button class="modal-close" id="quickview-close">&times;</button>
+  <div class="quickview-body">
+    <div class="quickview-visual">
+      <canvas class="quickview-canvas" id="quickview-canvas" width="320" height="320"></canvas>
+      <p class="quickview-drag-hint">Drag to rotate</p>
+    </div>
+    <div class="quickview-info">
+      <span class="quickview-badge">Hand-Poured in Kingston</span>
+      <h2 id="qv-name"></h2>
+      <div class="quickview-price" id="qv-price"></div>
+      <p class="quickview-desc" id="qv-desc"></p>
+      <div class="quickview-details">
+        <div class="qv-detail"><span class="qv-label">Size</span><span id="qv-size"></span></div>
+        <div class="qv-detail"><span class="qv-label">Colours</span><span id="qv-colours"></span></div>
+        <div class="qv-detail"><span class="qv-label">Best For</span><span id="qv-bestfor"></span></div>
+        <div class="qv-detail"><span class="qv-label">Technique</span><span id="qv-technique"></span></div>
+      </div>
+      <div class="quickview-qty">
+        <button class="qty-btn" id="qv-minus">−</button>
+        <span class="qty-val" id="qv-qty">1</span>
+        <button class="qty-btn" id="qv-plus">+</button>
+      </div>
+      <button class="btn btn-primary btn-block qv-add" id="qv-add-btn">Add to Cart</button>
+    </div>
   </div>
 </div>
 
@@ -58,31 +97,86 @@
     <ul class="nav-links" role="menubar">
       <li role="none"><a href="#story" role="menuitem">Our Story</a></li>
       <li role="none"><a href="#brothers" role="menuitem">The Brothers</a></li>
-      <li role="none"><a href="#products" role="menuitem">Soft Baits</a></li>
+      <li role="none"><a href="#products" role="menuitem">Shop</a></li>
+      <li role="none"><a href="#garage" role="menuitem">The Garage</a></li>
       <li role="none"><a href="#techniques" role="menuitem">Techniques</a></li>
       <li role="none"><a href="#reports" role="menuitem">Reports</a></li>
-      <li role="none"><a href="#rewards" role="menuitem">Rewards</a></li>
       <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
     </ul>
-    <button class="cart-btn" id="cart-btn" aria-label="Open cart">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-      <span class="cart-count" id="cart-count">0</span>
-    </button>
+    <div class="nav-actions">
+      <button class="nav-search-btn" id="nav-search-btn" aria-label="Search products">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <button class="cart-btn" id="cart-btn" aria-label="Open cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
   </div>
 </nav>
 
+<!-- ===== SEARCH PANEL ===== -->
+<div class="search-panel" id="search-panel">
+  <div class="container">
+    <div class="search-inner">
+      <input type="text" class="search-input" id="search-input" placeholder="Search baits, techniques, reports..." aria-label="Search">
+      <button class="search-close-btn" id="search-close-btn">&times;</button>
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<!-- ===== WELCOME BANNER (first visit) ===== -->
+<div class="welcome-banner" id="welcome-banner" style="display:none">
+  <div class="container welcome-content">
+    <div class="welcome-text">
+      <h3>Welcome to Three Cast, b'y! 🎣</h3>
+      <p>First time here? Take <strong>10% off</strong> your first order with code <strong>FIRSTCAST</strong></p>
+    </div>
+    <button class="btn btn-primary btn-sm welcome-shop">Shop Now</button>
+    <button class="welcome-dismiss" id="welcome-dismiss">&times;</button>
+  </div>
+</div>
+
 <!-- ===== HERO ===== -->
 <header class="hero">
+  <canvas class="hero-waves" id="hero-waves"></canvas>
   <div class="container hero-content">
-    <p class="hero-eyebrow">St. John’s, Newfoundland → Kingston, Ontario</p>
+    <p class="hero-eyebrow">St. John's, Newfoundland → Kingston, Ontario</p>
     <h1>Born on the Rock.<br>Built for the Water.</h1>
-    <p class="hero-description">Three brothers from St. John’s, NL. One garage in Kingston, ON. We pour every soft plastic bait by hand — the same way we learned to fish back home.</p>
+    <p class="hero-description">Three brothers from St. John's, NL. One garage in Kingston, ON. We pour every soft plastic bait by hand — the same way we learned to fish back home.</p>
     <div class="hero-buttons">
-      <a href="#products" class="btn btn-primary">Shop Soft Baits</a>
-      <a href="#brothers" class="btn btn-outline">Meet the Brothers</a>
+      <a href="#products" class="btn btn-primary btn-lg">Shop Soft Baits</a>
+      <a href="#brothers" class="btn btn-outline btn-lg">Meet the Brothers</a>
     </div>
   </div>
+  <div class="hero-scroll-cue">
+    <span>Scroll to explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
 </header>
+
+<!-- ===== TRUST BAR ===== -->
+<section class="trust-bar">
+  <div class="container trust-grid">
+    <div class="trust-item">
+      <span class="trust-num" data-count="2847">0</span>
+      <span class="trust-label">Packs Shipped</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-num" data-count="412">0</span>
+      <span class="trust-label">Happy Anglers</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-num" data-count="6">0</span>
+      <span class="trust-label">Signature Baits</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-num" data-count="4.9">0</span>
+      <span class="trust-label">Avg Rating ★</span>
+    </div>
+  </div>
+</section>
 
 <!-- ===== STORY ===== -->
 <section id="story" class="section">
@@ -91,14 +185,14 @@
     <h2 class="animate-on-scroll">From the Rock to the Rideau</h2>
     <div class="story-grid">
       <div class="story-text animate-on-scroll">
-        <p>We grew up in St. John’s, Newfoundland — three brothers who spent every summer jigging cod off the wharf and casting for trout around Signal Hill. Fishing isn’t something we picked up. It’s something we were born into.</p>
-        <p>When life brought us to Kingston, Ontario, we found world-class freshwater fishing but couldn’t find soft baits that met our standards. So we cleared out Darryl’s garage and started pouring our own.</p>
-        <p>Three brothers. Three equal partners. One cast at a time. If it doesn’t fish, it doesn’t ship.</p>
+        <p>We grew up in St. John's, Newfoundland — three brothers who spent every summer jigging cod off the wharf and casting for trout around Signal Hill. Fishing isn't something we picked up. It's something we were born into.</p>
+        <p>When life brought us to Kingston, Ontario, we found world-class freshwater fishing but couldn't find soft baits that met our standards. So we cleared out Darryl's garage and started pouring our own.</p>
+        <p>Three brothers. Three equal partners. One cast at a time. If it doesn't fish, it doesn't ship.</p>
       </div>
       <div class="story-values">
-        <div class="value-card glass-card animate-on-scroll"><span class="value-num">01</span><h3>Hand-Poured</h3><p>Every bait mixed, poured, and inspected by hand in Darryl’s garage. No factory lines.</p></div>
-        <div class="value-card glass-card animate-on-scroll"><span class="value-num">02</span><h3>Field-Tested</h3><p>Nothing ships until it’s caught fish on Lake Ontario, the St. Lawrence, or the Rideau.</p></div>
-        <div class="value-card glass-card animate-on-scroll"><span class="value-num">03</span><h3>East Coast Roots</h3><p>Born on the Rock. That Newfoundland work ethic is in every bait we pour.</p></div>
+        <div class="value-card glass-card animate-on-scroll"><span class="value-icon">🤲</span><span class="value-num">01</span><h3>Hand-Poured</h3><p>Every bait mixed, poured, and inspected by hand in Darryl's garage. No factory lines.</p></div>
+        <div class="value-card glass-card animate-on-scroll"><span class="value-icon">🎣</span><span class="value-num">02</span><h3>Field-Tested</h3><p>Nothing ships until it's caught fish on Lake Ontario, the St. Lawrence, or the Rideau.</p></div>
+        <div class="value-card glass-card animate-on-scroll"><span class="value-icon">⚓</span><span class="value-num">03</span><h3>East Coast Roots</h3><p>Born on the Rock. That Newfoundland work ethic is in every bait we pour.</p></div>
       </div>
     </div>
   </div>
@@ -108,121 +202,254 @@
 <section id="brothers" class="section section-dark">
   <div class="container">
     <p class="section-label animate-on-scroll">The Brothers</p>
-    <h2 class="animate-on-scroll">Three B’ys. Equal Partners.</h2>
+    <h2 class="animate-on-scroll">Three B'ys. Equal Partners.</h2>
     <p class="section-intro animate-on-scroll">Three Cast is split three ways — equal ownership, equal say, equal pride.</p>
     <div class="brothers-grid">
-      <div class="brother-card glass-card-dark animate-on-scroll"><span class="brother-role">The Creator</span><h3>You</h3><p>Designs every bait — shapes, colours, action. Tests every formula until it’s right.</p><span class="brother-focus">Product Design · R&amp;D · Brand Vision</span></div>
-      <div class="brother-card glass-card-dark animate-on-scroll"><span class="brother-role">The Investor</span><h3>Darryl</h3><p>Put up the capital, put up the garage, keeps the books straight. The business backbone.</p><span class="brother-focus">Capital · Finance · Operations</span></div>
-      <div class="brother-card glass-card-dark animate-on-scroll"><span class="brother-role">The Producer</span><h3>Darren</h3><p>Runs the production line. Pours every single bait, pulls molds, trims flash. Quality never slips.</p><span class="brother-focus">Production · QC · Fulfillment</span></div>
+      <div class="brother-card glass-card-dark animate-on-scroll">
+        <div class="brother-avatar">🎨</div>
+        <span class="brother-role">The Creator</span>
+        <h3>You</h3>
+        <p>Designs every bait — shapes, colours, action. Tests every formula until it's right.</p>
+        <span class="brother-focus">Product Design · R&amp;D · Brand Vision</span>
+      </div>
+      <div class="brother-card glass-card-dark animate-on-scroll">
+        <div class="brother-avatar">📊</div>
+        <span class="brother-role">The Investor</span>
+        <h3>Darryl</h3>
+        <p>Put up the capital, put up the garage, keeps the books straight. The business backbone.</p>
+        <span class="brother-focus">Capital · Finance · Operations</span>
+      </div>
+      <div class="brother-card glass-card-dark animate-on-scroll">
+        <div class="brother-avatar">🔧</div>
+        <span class="brother-role">The Producer</span>
+        <h3>Darren</h3>
+        <p>Runs the production line. Pours every single bait, pulls molds, trims flash. Quality never slips.</p>
+        <span class="brother-focus">Production · QC · Fulfillment</span>
+      </div>
     </div>
     <div class="split-note glass-card-dark animate-on-scroll"><p>Ownership: 33.3% · 33.3% · 33.3% — No outside money. Just us.</p></div>
   </div>
 </section>
 
-<!-- ===== PRODUCTS WITH 3D VIEWER ===== -->
+<!-- ===== PRODUCTS ===== -->
 <section id="products" class="section">
   <div class="container">
     <p class="section-label animate-on-scroll">Our Soft Baits</p>
     <h2 class="animate-on-scroll">Poured with Purpose</h2>
-    <p class="section-intro animate-on-scroll">Every bait named after the waters we fish. Drag to rotate. Click to add to cart.</p>
-    <div class="products-grid">
+    <p class="section-intro animate-on-scroll">Every bait named after the waters we fish. Click Quick View for details or add straight to cart.</p>
 
-      <div class="product-card glass-card animate-on-scroll" data-product="crawler" data-price="8.99" data-name="Kingston Crawler">
+    <!-- Product Filters -->
+    <div class="product-filters animate-on-scroll">
+      <button class="filter-btn active" data-filter="all">All Baits</button>
+      <button class="filter-btn" data-filter="worm">Worms</button>
+      <button class="filter-btn" data-filter="creature">Creatures</button>
+      <button class="filter-btn" data-filter="swimbait">Swimbaits</button>
+      <button class="filter-btn" data-filter="grub">Grubs</button>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card glass-card animate-on-scroll" data-product="crawler" data-price="8.99" data-name="Kingston Crawler" data-category="worm" data-desc="Our signature 6 inch ribbed paddle tail worm. The heavy salt load gives it a slow, tantalizing fall that walleye and bass cannot resist. Hand-poured with a dual-colour laminate." data-size="6 inch | 8-pack" data-colours="Pumpkinseed, Green Pumpkin, Black & Blue, Watermelon Red" data-bestfor="Walleye, Largemouth Bass" data-technique="Texas Rig, Carolina Rig, Jig Trailer">
+        <span class="product-badge">Best Seller</span>
         <div class="product-3d" data-color="#b45309">
           <canvas class="bait-canvas" width="200" height="200"></canvas>
         </div>
         <h3>The Kingston Crawler</h3>
-        <p>Signature 6″ ribbed paddle tail worm. Drives walleye and bass wild.</p>
-        <span class="product-tag">6″ | 8-pack</span>
+        <p>Signature 6 inch ribbed paddle tail worm. Drives walleye and bass wild.</p>
+        <div class="product-colours">
+          <span class="colour-dot" style="background:#b45309" title="Pumpkinseed"></span>
+          <span class="colour-dot" style="background:#365314" title="Green Pumpkin"></span>
+          <span class="colour-dot" style="background:#1e293b" title="Black & Blue"></span>
+          <span class="colour-dot" style="background:#4d7c0f" title="Watermelon Red"></span>
+        </div>
+        <span class="product-tag">6 inch | 8-pack</span>
         <div class="product-price">$8.99 <small>CAD</small></div>
-        <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        <div class="product-actions">
+          <button class="btn btn-outline-sm quick-view-btn">Quick View</button>
+          <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        </div>
       </div>
 
-      <div class="product-card glass-card animate-on-scroll" data-product="ribbon" data-price="9.49" data-name="Rideau Ribbon Tail">
+      <div class="product-card glass-card animate-on-scroll" data-product="ribbon" data-price="9.49" data-name="Rideau Ribbon Tail" data-category="worm" data-desc="Classic ribbon tail design with a subtle spiral action on the fall. Deadly on drop shot or Texas rig in clear water. Our go-to for pressured smallmouth." data-size="5 inch | 10-pack" data-colours="Green Pumpkin, Smoke Pepper, June Bug, Clear Gold" data-bestfor="Smallmouth Bass, Largemouth Bass" data-technique="Drop Shot, Texas Rig, Shaky Head">
         <div class="product-3d" data-color="#365314">
           <canvas class="bait-canvas" width="200" height="200"></canvas>
         </div>
         <h3>Rideau Ribbon Tail</h3>
         <p>Classic ribbon tail, deadly on drop shot or Texas rig. Clear water killer.</p>
-        <span class="product-tag">5″ | 10-pack</span>
+        <div class="product-colours">
+          <span class="colour-dot" style="background:#365314" title="Green Pumpkin"></span>
+          <span class="colour-dot" style="background:#6b7280" title="Smoke Pepper"></span>
+          <span class="colour-dot" style="background:#4a1d6b" title="June Bug"></span>
+        </div>
+        <span class="product-tag">5 inch | 10-pack</span>
         <div class="product-price">$9.49 <small>CAD</small></div>
-        <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        <div class="product-actions">
+          <button class="btn btn-outline-sm quick-view-btn">Quick View</button>
+          <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        </div>
       </div>
 
-      <div class="product-card glass-card animate-on-scroll" data-product="shad" data-price="10.99" data-name="St. Lawrence Shad">
+      <div class="product-card glass-card animate-on-scroll" data-product="shad" data-price="10.99" data-name="St. Lawrence Shad" data-category="swimbait" data-desc="Paddle tail swimbait with a tight wobble and lifelike swimming action. Salt-loaded for extra casting distance. Matches the shad forage base in the St. Lawrence perfectly." data-size="4 inch | 6-pack" data-colours="Silver Shad, Pearl White, Chartreuse, Alewife" data-bestfor="Smallmouth Bass, Northern Pike, Walleye" data-technique="Swim & Retrieve, Underspin, Jig Head">
+        <span class="product-badge product-badge-new">New</span>
         <div class="product-3d" data-color="#1e3a5f">
           <canvas class="bait-canvas" width="200" height="200"></canvas>
         </div>
         <h3>St. Lawrence Shad</h3>
         <p>Paddle tail swimbait with tight wobble. Salt-loaded for distance.</p>
-        <span class="product-tag">4″ | 6-pack</span>
+        <div class="product-colours">
+          <span class="colour-dot" style="background:#94a3b8" title="Silver Shad"></span>
+          <span class="colour-dot" style="background:#e2e8f0" title="Pearl White"></span>
+          <span class="colour-dot" style="background:#a3e635" title="Chartreuse"></span>
+        </div>
+        <span class="product-tag">4 inch | 6-pack</span>
         <div class="product-price">$10.99 <small>CAD</small></div>
-        <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        <div class="product-actions">
+          <button class="btn btn-outline-sm quick-view-btn">Quick View</button>
+          <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        </div>
       </div>
 
-      <div class="product-card glass-card animate-on-scroll" data-product="craw" data-price="9.99" data-name="Quinte Craw">
+      <div class="product-card glass-card animate-on-scroll" data-product="craw" data-price="9.99" data-name="Quinte Craw" data-category="creature" data-desc="Compact creature bait with hyper-realistic claw action. The pincers flutter on the fall creating irresistible vibration. A Bay of Quinte favourite for flipping and pitching." data-size="3.5 inch | 8-pack" data-colours="Black & Blue, Green Pumpkin, Okeechobee Craw, Texas Red" data-bestfor="Largemouth Bass, Smallmouth Bass" data-technique="Flipping, Pitching, Texas Rig, Jig Trailer">
         <div class="product-3d" data-color="#92400e">
           <canvas class="bait-canvas" width="200" height="200"></canvas>
         </div>
         <h3>Quinte Craw</h3>
         <p>Compact creature bait with realistic claw action. Bay of Quinte favourite.</p>
-        <span class="product-tag">3.5″ | 8-pack</span>
+        <div class="product-colours">
+          <span class="colour-dot" style="background:#1e293b" title="Black & Blue"></span>
+          <span class="colour-dot" style="background:#365314" title="Green Pumpkin"></span>
+          <span class="colour-dot" style="background:#92400e" title="Okeechobee Craw"></span>
+        </div>
+        <span class="product-tag">3.5 inch | 8-pack</span>
         <div class="product-price">$9.99 <small>CAD</small></div>
-        <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        <div class="product-actions">
+          <button class="btn btn-outline-sm quick-view-btn">Quick View</button>
+          <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        </div>
       </div>
 
-      <div class="product-card glass-card animate-on-scroll" data-product="grub" data-price="7.99" data-name="Signal Hill Grub">
+      <div class="product-card glass-card animate-on-scroll" data-product="grub" data-price="7.99" data-name="Signal Hill Grub" data-category="grub" data-desc="Straight-tail grub that excels on a jig head. Simple, effective, and Newfoundland tough. The subtle tail quiver drives fish crazy in cold water." data-size="3 inch | 12-pack" data-colours="Smoke Silver, White, Pumpkinseed, Chartreuse" data-bestfor="Smallmouth Bass, Walleye, Crappie" data-technique="Jig Head, Underspin, Drop Shot">
         <div class="product-3d" data-color="#6b6b6b">
           <canvas class="bait-canvas" width="200" height="200"></canvas>
         </div>
         <h3>Signal Hill Grub</h3>
         <p>Straight-tail grub that excels on a jig head. Newfoundland tough.</p>
-        <span class="product-tag">3″ | 12-pack</span>
+        <div class="product-colours">
+          <span class="colour-dot" style="background:#6b7280" title="Smoke Silver"></span>
+          <span class="colour-dot" style="background:#e5e7eb" title="White"></span>
+          <span class="colour-dot" style="background:#b45309" title="Pumpkinseed"></span>
+        </div>
+        <span class="product-tag">3 inch | 12-pack</span>
         <div class="product-price">$7.99 <small>CAD</small></div>
-        <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        <div class="product-actions">
+          <button class="btn btn-outline-sm quick-view-btn">Quick View</button>
+          <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        </div>
       </div>
 
-      <div class="product-card glass-card animate-on-scroll" data-product="custom" data-price="12.99" data-name="Custom Colour Pour">
+      <div class="product-card glass-card animate-on-scroll" data-product="custom" data-price="12.99" data-name="Custom Colour Pour" data-category="worm" data-desc="Your colour, your bait. Tell us the exact colour combination you want and Darren pours a custom batch to your specification. Minimum 5 packs per custom order." data-size="Custom | Min 5 packs" data-colours="You choose — any combination" data-bestfor="Your target species" data-technique="Your preferred method">
+        <span class="product-badge product-badge-custom">Custom</span>
         <div class="product-3d" data-color="#d97706">
           <canvas class="bait-canvas" width="200" height="200"></canvas>
         </div>
         <h3>Custom Colour Pours</h3>
         <p>Your colour, your bait. Darren pours custom batches to your spec.</p>
+        <div class="product-colours">
+          <span class="colour-dot colour-dot-custom" title="Your choice">?</span>
+        </div>
         <span class="product-tag">Custom | Min 5 packs</span>
         <div class="product-price">$12.99 <small>CAD</small></div>
-        <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        <div class="product-actions">
+          <button class="btn btn-outline-sm quick-view-btn">Quick View</button>
+          <button class="btn btn-primary btn-sm add-to-cart">Add to Cart</button>
+        </div>
       </div>
+    </div>
 
+    <!-- Recently Viewed -->
+    <div class="recently-viewed" id="recently-viewed" style="display:none">
+      <h3 class="rv-title">Recently Viewed</h3>
+      <div class="rv-grid" id="rv-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE GARAGE ===== -->
+<section id="garage" class="section section-dark">
+  <div class="container">
+    <p class="section-label animate-on-scroll">The Garage</p>
+    <h2 class="animate-on-scroll">Where It All Happens</h2>
+    <p class="section-intro animate-on-scroll">Darryl's two-car garage in Kingston — our R&D lab, production floor, and shipping hub all in one.</p>
+
+    <div class="garage-layout animate-on-scroll">
+      <div class="garage-header">
+        <span class="garage-badge">Darryl's Garage — Kingston, ON K7L</span>
+      </div>
+      <div class="garage-floor">
+        <div class="garage-zone zone-top"><span class="garage-label">Production Line</span></div>
+        <div class="garage-row">
+          <div class="station station-storage"><span class="station-num">1</span><span class="station-name">Raw Storage</span><span class="station-detail">Plastisol, salt, colour, scent</span></div>
+          <div class="station station-mixing"><span class="station-num">2</span><span class="station-name">Mixing</span><span class="station-detail">Heat & blend formulas</span></div>
+          <div class="station station-vent"><span class="station-num">3</span><span class="station-name">Ventilation</span><span class="station-detail">Fume extraction system</span></div>
+          <div class="station station-pouring"><span class="station-num">4</span><span class="station-name">Pouring</span><span class="station-detail">Darren's domain — hand pour</span></div>
+        </div>
+        <div class="flow-arrow">→ → → FLOW → → →</div>
+        <div class="garage-row">
+          <div class="station station-cooling"><span class="station-num">5</span><span class="station-name">Cooling</span><span class="station-detail">Rack cure & set</span></div>
+          <div class="station station-qc"><span class="station-num">6</span><span class="station-name">QC / Trim</span><span class="station-detail">Inspect, trim flash, test</span></div>
+          <div class="station station-packing"><span class="station-num">7</span><span class="station-name">Packing</span><span class="station-detail">Bag, seal, label</span></div>
+          <div class="station station-ship"><span class="station-num">8</span><span class="station-name">Ship</span><span class="station-detail">Canada Post pickup</span></div>
+        </div>
+        <div class="garage-zone zone-bottom"><span class="garage-label">Ready for Water</span></div>
+      </div>
+    </div>
+
+    <div class="garage-stats animate-on-scroll">
+      <div class="garage-stat glass-card-dark">
+        <span class="garage-stat-num">50+</span>
+        <span class="garage-stat-label">Molds</span>
+      </div>
+      <div class="garage-stat glass-card-dark">
+        <span class="garage-stat-num">12</span>
+        <span class="garage-stat-label">Colour Formulas</span>
+      </div>
+      <div class="garage-stat glass-card-dark">
+        <span class="garage-stat-num">200+</span>
+        <span class="garage-stat-label">Packs / Week</span>
+      </div>
+      <div class="garage-stat glass-card-dark">
+        <span class="garage-stat-num">0</span>
+        <span class="garage-stat-label">Shortcuts</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ===== TECHNIQUES & SPECIES ===== -->
-<section id="techniques" class="section section-dark">
+<section id="techniques" class="section">
   <div class="container">
     <p class="section-label animate-on-scroll">Techniques</p>
     <h2 class="animate-on-scroll">How to Fish Three Cast</h2>
     <p class="section-intro animate-on-scroll">Rigging guides and species strategies for Eastern Ontario waters.</p>
     <div class="techniques-grid">
-      <div class="technique-card glass-card-dark animate-on-scroll">
+      <div class="technique-card glass-card animate-on-scroll">
         <span class="technique-icon">🎯</span>
         <h3>Texas Rig</h3>
         <p>Thread the Kingston Crawler weedless for heavy cover. 3/0 EWG hook, 1/4oz bullet weight. Flip into weed edges on the Rideau.</p>
         <span class="hot-bait">🔥 Hot Bait: Kingston Crawler</span>
       </div>
-      <div class="technique-card glass-card-dark animate-on-scroll">
+      <div class="technique-card glass-card animate-on-scroll">
         <span class="technique-icon">📍</span>
         <h3>Drop Shot</h3>
-        <p>Nose-hook the Ribbon Tail 12–18″ above a 1/4oz drop shot weight. Deadly in the St. Lawrence’s clear deep water.</p>
+        <p>Nose-hook the Ribbon Tail 12–18 inches above a 1/4oz drop shot weight. Deadly in the St. Lawrence's clear deep water.</p>
         <span class="hot-bait">🔥 Hot Bait: Rideau Ribbon Tail</span>
       </div>
-      <div class="technique-card glass-card-dark animate-on-scroll">
+      <div class="technique-card glass-card animate-on-scroll">
         <span class="technique-icon">🌊</span>
         <h3>Swim & Retrieve</h3>
         <p>Steady retrieve with the St. Lawrence Shad on a 1/4oz jig head. Match the hatch in open water around Collins Bay.</p>
         <span class="hot-bait">🔥 Hot Bait: St. Lawrence Shad</span>
       </div>
-      <div class="technique-card glass-card-dark animate-on-scroll">
+      <div class="technique-card glass-card animate-on-scroll">
         <span class="technique-icon">🪸</span>
         <h3>Flipping & Pitching</h3>
         <p>Punch the Quinte Craw through matted vegetation in Bay of Quinte. Heavy braid, 1/2oz weight, pegged.</p>
@@ -232,22 +459,22 @@
 
     <h3 class="species-heading animate-on-scroll">Species Guide — Eastern Ontario</h3>
     <div class="species-grid">
-      <div class="species-card glass-card-dark animate-on-scroll">
+      <div class="species-card glass-card animate-on-scroll">
         <span class="species-icon">🐟</span>
         <h4>Largemouth Bass</h4>
         <p>Peak: June–Sept. Weed edges, docks, lily pads. Texas rig the Crawler or flip the Craw.</p>
       </div>
-      <div class="species-card glass-card-dark animate-on-scroll">
+      <div class="species-card glass-card animate-on-scroll">
         <span class="species-icon">🐟</span>
         <h4>Smallmouth Bass</h4>
         <p>Peak: May–Oct. Rocky points, shoals, current breaks. Drop shot the Ribbon Tail on the St. Lawrence.</p>
       </div>
-      <div class="species-card glass-card-dark animate-on-scroll">
+      <div class="species-card glass-card animate-on-scroll">
         <span class="species-icon">🐟</span>
         <h4>Walleye</h4>
         <p>Peak: May–June, Sept–Nov. Bay of Quinte is legendary. Slow drag the Crawler on a jig head at dusk.</p>
       </div>
-      <div class="species-card glass-card-dark animate-on-scroll">
+      <div class="species-card glass-card animate-on-scroll">
         <span class="species-icon">🐟</span>
         <h4>Northern Pike</h4>
         <p>Peak: Spring & Fall. Weed lines, creek mouths. Swim the Shad past ambush points. Hold on tight.</p>
@@ -257,51 +484,51 @@
 </section>
 
 <!-- ===== REVIEWS ===== -->
-<section id="reviews" class="section">
+<section id="reviews" class="section section-dark">
   <div class="container">
     <p class="section-label animate-on-scroll">Reviews</p>
     <h2 class="animate-on-scroll">Verified Catches</h2>
     <p class="section-intro animate-on-scroll">Real anglers. Real fish. Real Three Cast baits.</p>
     <div class="reviews-grid">
-      <div class="review-card glass-card animate-on-scroll">
+      <div class="review-card glass-card-dark animate-on-scroll">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">“The Kingston Crawler is unreal on the Rideau. Pulled a 4.2lb largemouth on my second cast. Hand-poured quality you can feel.”</p>
-        <div class="review-catch"><strong>Catch:</strong> 4.2 lb Largemouth Bass • Rideau Canal</div>
+        <p class="review-text">"The Kingston Crawler is unreal on the Rideau. Pulled a 4.2lb largemouth on my second cast. Hand-poured quality you can feel."</p>
+        <div class="review-catch"><strong>Catch:</strong> 4.2 lb Largemouth Bass · Rideau Canal</div>
         <div class="review-author">— Mike T., Kingston ON</div>
         <span class="review-verified">✓ Verified Purchase</span>
       </div>
-      <div class="review-card glass-card animate-on-scroll">
+      <div class="review-card glass-card-dark animate-on-scroll">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">“Drop shot the Ribbon Tail in 20ft on the St. Lawrence. Smallmouth couldn’t resist. Five fish over 3lbs in one morning.”</p>
-        <div class="review-catch"><strong>Catch:</strong> 3.8 lb Smallmouth Bass • St. Lawrence River</div>
+        <p class="review-text">"Drop shot the Ribbon Tail in 20ft on the St. Lawrence. Smallmouth couldn't resist. Five fish over 3lbs in one morning."</p>
+        <div class="review-catch"><strong>Catch:</strong> 3.8 lb Smallmouth Bass · St. Lawrence River</div>
         <div class="review-author">— Sarah K., Brockville ON</div>
         <span class="review-verified">✓ Verified Purchase</span>
       </div>
-      <div class="review-card glass-card animate-on-scroll">
+      <div class="review-card glass-card-dark animate-on-scroll">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">“Best walleye bait I’ve used on Quinte. The Craw’s claw action is insane. Ordered 10 more packs.”</p>
-        <div class="review-catch"><strong>Catch:</strong> 6.1 lb Walleye • Bay of Quinte</div>
+        <p class="review-text">"Best walleye bait I've used on Quinte. The Craw's claw action is insane. Ordered 10 more packs."</p>
+        <div class="review-catch"><strong>Catch:</strong> 6.1 lb Walleye · Bay of Quinte</div>
         <div class="review-author">— Dave R., Belleville ON</div>
         <span class="review-verified">✓ Verified Purchase</span>
       </div>
-      <div class="review-card glass-card animate-on-scroll">
+      <div class="review-card glass-card-dark animate-on-scroll">
         <div class="review-stars">★★★★☆</div>
-        <p class="review-text">“Swam the Shad past a weed line at Collins Bay — pike smashed it. Great action, holds up well to teeth.”</p>
-        <div class="review-catch"><strong>Catch:</strong> 8.5 lb Northern Pike • Collins Bay</div>
+        <p class="review-text">"Swam the Shad past a weed line at Collins Bay — pike smashed it. Great action, holds up well to teeth."</p>
+        <div class="review-catch"><strong>Catch:</strong> 8.5 lb Northern Pike · Collins Bay</div>
         <div class="review-author">— Jean-Marc L., Montreal QC</div>
         <span class="review-verified">✓ Verified Purchase</span>
       </div>
-      <div class="review-card glass-card animate-on-scroll">
+      <div class="review-card glass-card-dark animate-on-scroll">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">“Signal Hill Grub on a jig head — just like jigging back home in St. John’s. These b’ys know their stuff.”</p>
-        <div class="review-catch"><strong>Catch:</strong> 2.4 lb Smallmouth • Charleston Lake</div>
+        <p class="review-text">"Signal Hill Grub on a jig head — just like jigging back home in St. John's. These b'ys know their stuff."</p>
+        <div class="review-catch"><strong>Catch:</strong> 2.4 lb Smallmouth · Charleston Lake</div>
         <div class="review-author">— Tom W., Gananoque ON</div>
         <span class="review-verified">✓ Verified Purchase</span>
       </div>
-      <div class="review-card glass-card animate-on-scroll">
+      <div class="review-card glass-card-dark animate-on-scroll">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">“Custom colour pour in pumpkinseed green — Darren nailed it. Tournament-winning bait. Supporting Canadian makers.”</p>
-        <div class="review-catch"><strong>Catch:</strong> 5.0 lb Largemouth • Lake Ontario</div>
+        <p class="review-text">"Custom colour pour in pumpkinseed green — Darren nailed it. Tournament-winning bait. Supporting Canadian makers."</p>
+        <div class="review-catch"><strong>Catch:</strong> 5.0 lb Largemouth · Lake Ontario</div>
         <div class="review-author">— Chris P., Toronto ON</div>
         <span class="review-verified">✓ Verified Purchase</span>
       </div>
@@ -310,27 +537,27 @@
 </section>
 
 <!-- ===== FISHING REPORTS ===== -->
-<section id="reports" class="section section-dark">
+<section id="reports" class="section">
   <div class="container">
     <p class="section-label animate-on-scroll">Fishing Reports</p>
     <h2 class="animate-on-scroll">From the Water This Week</h2>
     <p class="section-intro animate-on-scroll">Fresh intel from the brothers and our community. Updated weekly.</p>
     <div class="reports-grid">
-      <div class="report-card glass-card-dark animate-on-scroll">
+      <div class="report-card glass-card animate-on-scroll">
         <span class="report-date">Feb 8, 2026</span>
         <h3>Bay of Quinte — Walleye on Fire</h3>
         <p>Walleye are stacked at the mouth of the Trent. Slow-dragging the Kingston Crawler in pumpkinseed on a 1/4oz jig head. Best depth: 18–22ft. Morning bite is best before 9am.</p>
         <div class="report-conditions"><span>🌡️ -4°C</span> <span>💨 NW 15km/h</span> <span>🌊 Clear</span></div>
         <span class="hot-bait">🔥 Hot Bait: Kingston Crawler — Pumpkinseed</span>
       </div>
-      <div class="report-card glass-card-dark animate-on-scroll">
+      <div class="report-card glass-card animate-on-scroll">
         <span class="report-date">Feb 5, 2026</span>
         <h3>St. Lawrence — Smallmouth Staging</h3>
         <p>Smallmouth are grouping on rocky points near Gananoque Narrows. Drop shot the Ribbon Tail in green pumpkin, 15–20ft. Light line (6lb fluoro) making the difference.</p>
         <div class="report-conditions"><span>🌡️ -2°C</span> <span>💨 S 10km/h</span> <span>🌊 Slight chop</span></div>
         <span class="hot-bait">🔥 Hot Bait: Rideau Ribbon Tail — Green Pumpkin</span>
       </div>
-      <div class="report-card glass-card-dark animate-on-scroll">
+      <div class="report-card glass-card animate-on-scroll">
         <span class="report-date">Feb 2, 2026</span>
         <h3>Rideau Canal — Pre-Spawn Patterns</h3>
         <p>Largemouth are holding in 8–12ft near deep weed edges. Texas rig the Quinte Craw, work it slow with long pauses. Bites are subtle — watch your line.</p>
@@ -341,59 +568,168 @@
   </div>
 </section>
 
-<!-- ===== REWARDS / LOYALTY ===== -->
-<section id="rewards" class="section">
+<!-- ===== REWARDS ===== -->
+<section id="rewards" class="section section-dark">
   <div class="container">
     <p class="section-label animate-on-scroll">Loyalty Program</p>
     <h2 class="animate-on-scroll">Three Cast Rewards</h2>
     <p class="section-intro animate-on-scroll">Earn points with every purchase. Level up. Get free baits.</p>
     <div class="rewards-tiers">
-      <div class="tier-card glass-card animate-on-scroll">
+      <div class="tier-card glass-card-dark animate-on-scroll">
         <span class="tier-icon">🐟</span>
         <h3>Minnow</h3>
         <p class="tier-range">0 – 199 pts</p>
         <ul class="tier-perks"><li>1 point per $1 spent</li><li>Birthday bonus: 25 pts</li><li>Early access to new baits</li></ul>
       </div>
-      <div class="tier-card tier-featured glass-card animate-on-scroll">
+      <div class="tier-card tier-featured glass-card-dark animate-on-scroll">
+        <span class="tier-badge-label">Most Popular</span>
         <span class="tier-icon">🏆</span>
         <h3>Smallmouth</h3>
         <p class="tier-range">200 – 499 pts</p>
         <ul class="tier-perks"><li>1.5x points multiplier</li><li>Free shipping on all orders</li><li>Exclusive colour pours</li><li>$10 reward at 250 pts</li></ul>
       </div>
-      <div class="tier-card glass-card animate-on-scroll">
+      <div class="tier-card glass-card-dark animate-on-scroll">
         <span class="tier-icon">🥇</span>
         <h3>Lunker</h3>
         <p class="tier-range">500+ pts</p>
         <ul class="tier-perks"><li>2x points multiplier</li><li>Free bait pack monthly</li><li>Name a custom colour</li><li>VIP garage tour in Kingston</li><li>$25 reward at 500 pts</li></ul>
       </div>
     </div>
-    <div class="rewards-referral glass-card animate-on-scroll">
+    <div class="rewards-referral glass-card-dark animate-on-scroll">
       <h3>🤝 Refer a Friend</h3>
-      <p>Give your buddy $5 off their first order. You get 50 bonus points. Win-win, b’y.</p>
+      <p>Give your buddy $5 off their first order. You get 50 bonus points. Win-win, b'y.</p>
       <button class="btn btn-primary btn-sm">Get Your Referral Link</button>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="section section-dark">
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section">
   <div class="container">
-    <p class="section-label animate-on-scroll">Get in Touch</p>
-    <h2 class="animate-on-scroll">Let’s Talk Bait</h2>
-    <div class="contact-grid">
-      <div class="contact-info animate-on-scroll">
-        <p>Whether you want to order, request a custom colour, talk fishing, or just say hey — we’d love to hear from you.</p>
-        <div class="contact-details">
-          <p><strong>Email</strong><br><a href="mailto:info@threecast.ca" class="contact-link">info@threecast.ca</a></p>
-          <p><strong>Phone</strong><br><a href="tel:+16135552248" class="contact-link">(613) 555-BAIT</a></p>
-          <p><strong>HQ</strong><br>Kingston, Ontario, Canada K7L<br><em>(Darryl’s garage, specifically)</em></p>
-          <p><strong>Hours</strong><br>Mon–Fri 7AM–5PM · Sat 7AM–12PM<br><em>Sundays: Gone fishing. Obviously.</em></p>
+    <p class="section-label animate-on-scroll">FAQ</p>
+    <h2 class="animate-on-scroll">Common Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item glass-card animate-on-scroll">
+        <button class="faq-question" aria-expanded="false">
+          <span>Do you ship across Canada?</span>
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We ship coast to coast via Canada Post. Free shipping on orders over $75 in Ontario. Rest of Canada is a flat $9.99. Orders ship within 1–2 business days.</p>
         </div>
       </div>
-      <form class="contact-form animate-on-scroll" id="contact-form" novalidate>
+      <div class="faq-item glass-card animate-on-scroll">
+        <button class="faq-question" aria-expanded="false">
+          <span>What makes your baits different from store-bought?</span>
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Every bait is hand-poured by Darren in small batches. We use premium plastisol with custom salt loads and scent formulas. No mass production — each bait is inspected before it ships. You can feel the difference on the first cast.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card animate-on-scroll">
+        <button class="faq-question" aria-expanded="false">
+          <span>How do custom colour pours work?</span>
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Send us your colour idea (a photo, Pantone code, or just describe it). Darren will pour a test batch and send you photos for approval. Minimum order is 5 packs. Turnaround is usually 5–7 business days.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card animate-on-scroll">
+        <button class="faq-question" aria-expanded="false">
+          <span>Can I visit the garage?</span>
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Lunker-tier loyalty members get a VIP garage tour. Otherwise, drop us an email — if we're pouring and you're in Kingston, we love having anglers stop by. Just don't mind the mess.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card animate-on-scroll">
+        <button class="faq-question" aria-expanded="false">
+          <span>Do you sponsor tournaments?</span>
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We sponsor select Eastern Ontario tournaments and provide bait packs for charity events. Reach out through the contact form — tell us about your tournament and we'll see what we can do.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card animate-on-scroll">
+        <button class="faq-question" aria-expanded="false">
+          <span>What's your return policy?</span>
+          <span class="faq-chevron">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>If you're not satisfied, email us within 14 days. We'll make it right — replacement, store credit, or refund. No questions asked. We want you catching fish, not regretting a purchase.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter-section section-dark">
+  <div class="container">
+    <div class="newsletter-card glass-card-dark animate-on-scroll">
+      <div class="newsletter-content">
+        <span class="newsletter-icon">📬</span>
+        <h3>Get the Weekly Report</h3>
+        <p>Fishing reports, new bait drops, and Kingston water conditions — straight to your inbox every Friday.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="your@email.com" required aria-label="Email for newsletter">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <p class="newsletter-note">No spam. Unsubscribe anytime. Just fish talk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section">
+  <div class="container">
+    <p class="section-label animate-on-scroll">Get in Touch</p>
+    <h2 class="animate-on-scroll">Let's Talk Bait</h2>
+    <div class="contact-grid">
+      <div class="contact-info animate-on-scroll">
+        <p>Whether you want to order, request a custom colour, talk fishing, or just say hey — we'd love to hear from you.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <div><strong>Email</strong><br><a href="mailto:info@threecast.ca" class="contact-link">info@threecast.ca</a></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <div><strong>Phone</strong><br><a href="tel:+16135552248" class="contact-link">(613) 555-BAIT</a></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div><strong>HQ</strong><br>Kingston, Ontario, Canada K7L<br><em>(Darryl's garage, specifically)</em></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <div><strong>Hours</strong><br>Mon–Fri 7AM–5PM · Sat 7AM–12PM<br><em>Sundays: Gone fishing. Obviously.</em></div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" class="social-link" aria-label="Facebook">📘</a>
+          <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+          <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+      <form class="contact-form glass-card animate-on-scroll" id="contact-form" novalidate>
         <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
         <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
-        <select name="type" aria-label="I am a"><option value="">I am a...</option><option value="angler">Recreational Angler</option><option value="tournament">Tournament Angler</option><option value="shop">Bait Shop Owner</option><option value="custom">Custom Colour Request</option><option value="wholesale">Wholesale Buyer</option><option value="fellow-nler">Fellow Newfoundlander</option></select>
+        <select name="type" aria-label="I am a">
+          <option value="">I am a...</option>
+          <option value="angler">Recreational Angler</option>
+          <option value="tournament">Tournament Angler</option>
+          <option value="shop">Bait Shop Owner</option>
+          <option value="custom">Custom Colour Request</option>
+          <option value="wholesale">Wholesale Buyer</option>
+          <option value="fellow-nler">Fellow Newfoundlander</option>
+        </select>
         <textarea name="message" placeholder="Your Message" rows="5" aria-label="Your Message"></textarea>
         <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
         <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
@@ -404,123 +740,410 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer" role="contentinfo">
-  <div class="container footer-grid">
-    <div class="footer-brand"><h3>Three Cast<span class="logo-dot">.</span></h3><p>Handcrafted soft plastics by three Newfoundland brothers.</p><p>Born on the Rock. Built for the water.</p><p class="footer-copy">&copy; 2026 Three Cast Baits. All rights reserved.</p></div>
-    <div class="footer-links"><h4>Navigate</h4><a href="#story">Our Story</a><a href="#brothers">The Brothers</a><a href="#products">Soft Baits</a><a href="#techniques">Techniques</a><a href="#reports">Reports</a><a href="#rewards">Rewards</a><a href="#contact">Contact</a></div>
-    <div class="footer-links"><h4>Products</h4><a href="#products">Kingston Crawler</a><a href="#products">Rideau Ribbon Tail</a><a href="#products">St. Lawrence Shad</a><a href="#products">Quinte Craw</a><a href="#products">Signal Hill Grub</a><a href="#products">Custom Pours</a></div>
-    <div class="footer-links"><h4>Our Waters</h4><a href="#reports">Lake Ontario</a><a href="#reports">St. Lawrence River</a><a href="#reports">Rideau Canal</a><a href="#reports">Bay of Quinte</a><a href="#reports">Charleston Lake</a></div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Three Cast<span class="logo-dot">.</span></h3>
+        <p>Handcrafted soft plastics by three Newfoundland brothers.</p>
+        <p>Born on the Rock. Built for the water.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <a href="#story">Our Story</a>
+        <a href="#brothers">The Brothers</a>
+        <a href="#products">Shop</a>
+        <a href="#garage">The Garage</a>
+        <a href="#techniques">Techniques</a>
+        <a href="#reports">Reports</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4>Products</h4>
+        <a href="#products">Kingston Crawler</a>
+        <a href="#products">Rideau Ribbon Tail</a>
+        <a href="#products">St. Lawrence Shad</a>
+        <a href="#products">Quinte Craw</a>
+        <a href="#products">Signal Hill Grub</a>
+        <a href="#products">Custom Pours</a>
+      </div>
+      <div class="footer-links">
+        <h4>Our Waters</h4>
+        <a href="#reports">Lake Ontario</a>
+        <a href="#reports">St. Lawrence River</a>
+        <a href="#reports">Rideau Canal</a>
+        <a href="#reports">Bay of Quinte</a>
+        <a href="#reports">Charleston Lake</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Three Cast Baits. All rights reserved. Made in Kingston, Ontario, Canada 🇨🇦</p>
+      <div class="footer-badges">
+        <span class="footer-badge">🍁 Canadian Made</span>
+        <span class="footer-badge">🤲 Hand-Poured</span>
+        <span class="footer-badge">📦 Fast Shipping</span>
+      </div>
+    </div>
   </div>
 </footer>
 
 <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
-<div class="app-banner" id="app-banner"><div class="container app-banner-content"><p>📱 <strong>Install Three Cast!</strong> Add to your home screen for the full experience.</p><div class="app-buttons"><button id="install-btn" class="btn btn-app" style="display:none;">Install App</button><span class="app-hint">On iOS: tap Share ➡ Add to Home Screen</span></div></div></div>
+
+<div class="app-banner" id="app-banner">
+  <div class="container app-banner-content">
+    <p>📱 <strong>Install Three Cast!</strong> Add to your home screen for the full experience.</p>
+    <div class="app-buttons">
+      <button id="install-btn" class="btn btn-app" style="display:none;">Install App</button>
+      <span class="app-hint">On iOS: tap Share → Add to Home Screen</span>
+    </div>
+  </div>
+</div>
 
 <script>
+/* ========================================
+   THREE CAST BAITS — COMPLETE EXPERIENCE
+   ======================================== */
+
+/* === ANNOUNCEMENT BAR === */
+(function(){
+  var ab=document.getElementById('announcement-bar'),ac=document.getElementById('announcement-close');
+  if(sessionStorage.getItem('tc_ann_closed')){ab.style.display='none'}
+  if(ac){ac.addEventListener('click',function(){ab.style.display='none';sessionStorage.setItem('tc_ann_closed','1')})}
+})();
+
+/* === WELCOME BANNER (first-time visitors) === */
+(function(){
+  var wb=document.getElementById('welcome-banner'),wd=document.getElementById('welcome-dismiss');
+  if(!localStorage.getItem('tc_visited')){
+    setTimeout(function(){wb.style.display='block';setTimeout(function(){wb.classList.add('welcome-show')},10)},2000);
+    localStorage.setItem('tc_visited','1');
+  }
+  if(wd){wd.addEventListener('click',function(){wb.classList.remove('welcome-show');setTimeout(function(){wb.style.display='none'},400)})}
+  var ws=wb.querySelector('.welcome-shop');
+  if(ws){ws.addEventListener('click',function(){wb.classList.remove('welcome-show');setTimeout(function(){wb.style.display='none'},400);document.getElementById('products').scrollIntoView({behavior:'smooth'})})}
+})();
+
 /* === NAV === */
-var nt=document.querySelector(".nav-toggle"),nl=document.querySelector(".nav-links");
-if(nt){nt.addEventListener("click",function(){var o=nl.classList.toggle("nav-open");nt.classList.toggle("active");nt.setAttribute("aria-expanded",o)});nl.querySelectorAll("a").forEach(function(l){l.addEventListener("click",function(){nl.classList.remove("nav-open");nt.classList.remove("active");nt.setAttribute("aria-expanded","false")})})}
-
-/* === SCROLL ANIMATIONS === */
-var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add("visible");obs.unobserve(en.target)}})},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".animate-on-scroll").forEach(function(el){obs.observe(el)});
-
-/* === SCROLL TOP === */
-var stb=document.getElementById("scroll-top");window.addEventListener("scroll",function(){stb.classList.toggle("show",window.scrollY>400)},{passive:true});stb.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+var nt=document.querySelector('.nav-toggle'),nl=document.querySelector('.nav-links');
+if(nt){nt.addEventListener('click',function(){var o=nl.classList.toggle('nav-open');nt.classList.toggle('active');nt.setAttribute('aria-expanded',o)});nl.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){nl.classList.remove('nav-open');nt.classList.remove('active');nt.setAttribute('aria-expanded','false')})})}
 
 /* === NAVBAR SCROLL === */
-var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.classList.toggle("navbar-scrolled",window.scrollY>10)},{passive:true});
+var nb=document.querySelector('.navbar');
+window.addEventListener('scroll',function(){nb.classList.toggle('navbar-scrolled',window.scrollY>10)},{passive:true});
+
+/* === ACTIVE NAV LINK === */
+(function(){
+  var sections=document.querySelectorAll('section[id]');
+  var navLinks=document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll',function(){
+    var scrollY=window.scrollY+100;
+    sections.forEach(function(s){
+      var top=s.offsetTop-120,h=s.offsetHeight,id=s.getAttribute('id');
+      if(scrollY>=top&&scrollY<top+h){
+        navLinks.forEach(function(l){l.classList.remove('nav-active');if(l.getAttribute('href')==='#'+id)l.classList.add('nav-active')});
+      }
+    });
+  },{passive:true});
+})();
+
+/* === SEARCH === */
+(function(){
+  var sp=document.getElementById('search-panel'),sb=document.getElementById('nav-search-btn'),sc=document.getElementById('search-close-btn'),si=document.getElementById('search-input'),sr=document.getElementById('search-results');
+  var searchData=[
+    {title:'Kingston Crawler',section:'products',tags:'worm paddle tail walleye bass'},
+    {title:'Rideau Ribbon Tail',section:'products',tags:'worm ribbon drop shot smallmouth'},
+    {title:'St. Lawrence Shad',section:'products',tags:'swimbait paddle shad pike'},
+    {title:'Quinte Craw',section:'products',tags:'creature craw bass flipping'},
+    {title:'Signal Hill Grub',section:'products',tags:'grub jig head smallmouth'},
+    {title:'Custom Colour Pours',section:'products',tags:'custom colour color'},
+    {title:'Texas Rig',section:'techniques',tags:'texas rig weedless'},
+    {title:'Drop Shot',section:'techniques',tags:'drop shot finesse'},
+    {title:'Swim & Retrieve',section:'techniques',tags:'swim retrieve swimbait'},
+    {title:'Bay of Quinte Report',section:'reports',tags:'quinte walleye report'},
+    {title:'St. Lawrence Report',section:'reports',tags:'st lawrence smallmouth report'},
+    {title:'Rideau Canal Report',section:'reports',tags:'rideau largemouth report'},
+    {title:'Loyalty Rewards',section:'rewards',tags:'rewards points loyalty minnow smallmouth lunker'},
+    {title:'FAQ',section:'faq',tags:'faq questions shipping custom returns'},
+    {title:'Contact Us',section:'contact',tags:'contact email phone'}
+  ];
+  if(sb){sb.addEventListener('click',function(){sp.classList.toggle('search-open');if(sp.classList.contains('search-open'))si.focus()})}
+  if(sc){sc.addEventListener('click',function(){sp.classList.remove('search-open');si.value='';sr.innerHTML=''})}
+  if(si){si.addEventListener('input',function(){
+    var q=si.value.toLowerCase().trim();
+    if(q.length<2){sr.innerHTML='';return}
+    var results=searchData.filter(function(d){return d.title.toLowerCase().includes(q)||d.tags.includes(q)});
+    if(results.length===0){sr.innerHTML='<p class="search-no-results">No results found</p>';return}
+    sr.innerHTML=results.map(function(r){return '<a href="#'+r.section+'" class="search-result-item" onclick="document.getElementById(\'search-panel\').classList.remove(\'search-open\')"><strong>'+r.title+'</strong><span>'+r.section+'</span></a>'}).join('');
+  })}
+})();
+
+/* === SCROLL ANIMATIONS === */
+var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.animate-on-scroll').forEach(function(el){obs.observe(el)});
+
+/* === TRUST BAR COUNTER === */
+(function(){
+  var counted=false;
+  var trustObs=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting&&!counted){
+      counted=true;
+      document.querySelectorAll('.trust-num').forEach(function(el){
+        var target=parseFloat(el.dataset.count),isDecimal=target%1!==0,duration=1800,start=Date.now();
+        function tick(){
+          var elapsed=Date.now()-start,progress=Math.min(elapsed/duration,1);
+          var eased=1-Math.pow(1-progress,3);
+          var current=eased*target;
+          el.textContent=isDecimal?current.toFixed(1):Math.floor(current).toLocaleString();
+          if(progress<1)requestAnimationFrame(tick);
+          else el.textContent=isDecimal?target.toFixed(1):target.toLocaleString();
+        }
+        tick();
+      });
+    }
+  },{threshold:0.3});
+  var tb=document.querySelector('.trust-bar');
+  if(tb)trustObs.observe(tb);
+})();
+
+/* === SCROLL TOP === */
+var stb=document.getElementById('scroll-top');
+window.addEventListener('scroll',function(){stb.classList.toggle('show',window.scrollY>400)},{passive:true});
+stb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+/* === HERO WAVES === */
+(function(){
+  var c=document.getElementById('hero-waves');
+  if(!c)return;
+  var ctx=c.getContext('2d'),w,h;
+  function resize(){w=c.width=c.parentElement.offsetWidth;h=c.height=c.parentElement.offsetHeight}
+  resize();window.addEventListener('resize',resize);
+  var t=0;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<3;i++){
+      ctx.beginPath();
+      ctx.moveTo(0,h);
+      for(var x=0;x<=w;x+=8){
+        var y=h-40-i*20+Math.sin(x*0.003+t+i*1.2)*15+Math.sin(x*0.007+t*0.7)*8;
+        ctx.lineTo(x,y);
+      }
+      ctx.lineTo(w,h);ctx.closePath();
+      ctx.fillStyle='rgba(180,83,9,'+(0.04+i*0.03)+')';
+      ctx.fill();
+    }
+    t+=0.015;requestAnimationFrame(draw);
+  }
+  draw();
+})();
 
 /* === CONTACT FORM === */
-var cf=document.getElementById("contact-form"),fs=document.getElementById("form-status");
-if(cf){cf.addEventListener("submit",function(e){e.preventDefault();var n=cf.querySelector('[name="name"]'),em=cf.querySelector('[name="email"]'),v=true;cf.querySelectorAll(".input-error").forEach(function(el){el.classList.remove("input-error")});fs.textContent="";fs.className="form-status";if(!n.value.trim()){n.classList.add("input-error");v=false}if(!em.value.trim()||!em.value.includes("@")){em.classList.add("input-error");v=false}if(!v){fs.textContent="Please fill in all required fields.";fs.classList.add("form-error");return}var btn=cf.querySelector(".btn-submit");btn.textContent="Sending...";btn.disabled=true;setTimeout(function(){fs.textContent="Thanks b\u2019y! We\u2019ll be in touch.";fs.classList.add("form-success");btn.textContent="Send Message";btn.disabled=false;cf.reset()},1200)})}
+var cf=document.getElementById('contact-form'),fs=document.getElementById('form-status');
+if(cf){cf.addEventListener('submit',function(e){e.preventDefault();var n=cf.querySelector('[name="name"]'),em=cf.querySelector('[name="email"]'),v=true;cf.querySelectorAll('.input-error').forEach(function(el){el.classList.remove('input-error')});fs.textContent='';fs.className='form-status';if(!n.value.trim()){n.classList.add('input-error');v=false}if(!em.value.trim()||!em.value.includes('@')){em.classList.add('input-error');v=false}if(!v){fs.textContent='Please fill in all required fields.';fs.classList.add('form-error');return}var btn=cf.querySelector('.btn-submit');btn.textContent='Sending...';btn.disabled=true;setTimeout(function(){fs.textContent='Thanks b\u2019y! We\u2019ll be in touch.';fs.classList.add('form-success');btn.textContent='Send Message';btn.disabled=false;cf.reset()},1200)})}
+
+/* === NEWSLETTER === */
+var nf=document.getElementById('newsletter-form');
+if(nf){nf.addEventListener('submit',function(e){e.preventDefault();var btn=nf.querySelector('button');btn.textContent='Subscribed!';btn.classList.add('btn-success');nf.querySelector('input').value='';setTimeout(function(){btn.textContent='Subscribe';btn.classList.remove('btn-success')},3000)})}
+
+/* === PRODUCT FILTERS === */
+(function(){
+  var btns=document.querySelectorAll('.filter-btn');
+  var cards=document.querySelectorAll('.product-card');
+  btns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      btns.forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      var filter=btn.dataset.filter;
+      cards.forEach(function(card){
+        if(filter==='all'||card.dataset.category===filter){card.style.display='';card.classList.add('visible')}
+        else{card.style.display='none'}
+      });
+    });
+  });
+})();
+
+/* === FAQ ACCORDION === */
+document.querySelectorAll('.faq-question').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item=btn.closest('.faq-item');
+    var isOpen=item.classList.contains('faq-open');
+    document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('faq-open');i.querySelector('.faq-question').setAttribute('aria-expanded','false')});
+    if(!isOpen){item.classList.add('faq-open');btn.setAttribute('aria-expanded','true')}
+  });
+});
 
 /* === 3D BAIT VIEWER === */
-document.querySelectorAll(".bait-canvas").forEach(function(canvas){
-  var ctx=canvas.getContext("2d"),color=canvas.closest(".product-3d").dataset.color,angle=0,dragging=false,lastX=0;
+document.querySelectorAll('.bait-canvas').forEach(function(canvas){
+  var ctx=canvas.getContext('2d'),color=canvas.closest('.product-3d').dataset.color,angle=0,dragging=false,lastX=0;
   function draw(){
-    ctx.clearRect(0,0,200,200);
-    ctx.save();ctx.translate(100,100);
-    // Body
+    ctx.clearRect(0,0,200,200);ctx.save();ctx.translate(100,100);
     ctx.beginPath();
     var bodyLen=70,bodyW=14+Math.sin(angle*0.05)*3;
-    for(var i=0;i<bodyLen;i++){
-      var x=-bodyLen/2+i,y=Math.sin(i*0.15+angle*0.03)*bodyW*Math.sin(i/bodyLen*Math.PI);
-      if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-    }
-    for(var i=bodyLen-1;i>=0;i--){
-      var x=-bodyLen/2+i,y=-Math.sin(i*0.15+angle*0.03)*bodyW*Math.sin(i/bodyLen*Math.PI);
-      ctx.lineTo(x,y);
-    }
+    for(var i=0;i<bodyLen;i++){var x=-bodyLen/2+i,y=Math.sin(i*0.15+angle*0.03)*bodyW*Math.sin(i/bodyLen*Math.PI);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}
+    for(var i=bodyLen-1;i>=0;i--){var x=-bodyLen/2+i,y=-Math.sin(i*0.15+angle*0.03)*bodyW*Math.sin(i/bodyLen*Math.PI);ctx.lineTo(x,y)}
     ctx.closePath();
-    var grad=ctx.createLinearGradient(-60,0,60,0);
-    grad.addColorStop(0,color);grad.addColorStop(0.5,color+"cc");grad.addColorStop(1,color+"88");
-    ctx.fillStyle=grad;ctx.fill();
-    // Ribs
-    ctx.strokeStyle="rgba(255,255,255,0.15)";ctx.lineWidth=1;
-    for(var r=0;r<bodyLen;r+=6){
-      var x=-bodyLen/2+r,yTop=Math.sin(r*0.15+angle*0.03)*bodyW*Math.sin(r/bodyLen*Math.PI),yBot=-yTop;
-      ctx.beginPath();ctx.moveTo(x,yTop*0.8);ctx.lineTo(x,yBot*0.8);ctx.stroke();
-    }
-    // Paddle tail
-    var tailAngle=Math.sin(angle*0.08)*0.6;
-    ctx.save();ctx.translate(bodyLen/2,0);ctx.rotate(tailAngle);
-    ctx.beginPath();ctx.ellipse(12,0,16,10,0,0,Math.PI*2);
-    ctx.fillStyle=color+"aa";ctx.fill();ctx.restore();
-    // Eye
-    ctx.beginPath();ctx.arc(-bodyLen/2+8,0,3,0,Math.PI*2);ctx.fillStyle="#fff";ctx.fill();
-    ctx.beginPath();ctx.arc(-bodyLen/2+8,0,1.5,0,Math.PI*2);ctx.fillStyle="#000";ctx.fill();
-    // Highlight
-    ctx.beginPath();
-    ctx.ellipse(0,-bodyW*0.4,bodyLen*0.4,3,0,0,Math.PI*2);
-    ctx.fillStyle="rgba(255,255,255,0.12)";ctx.fill();
-    ctx.restore();
-    angle+=0.5;
-    requestAnimationFrame(draw);
+    var grad=ctx.createLinearGradient(-60,0,60,0);grad.addColorStop(0,color);grad.addColorStop(0.5,color+'cc');grad.addColorStop(1,color+'88');ctx.fillStyle=grad;ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=1;
+    for(var r=0;r<bodyLen;r+=6){var x=-bodyLen/2+r,yT=Math.sin(r*0.15+angle*0.03)*bodyW*Math.sin(r/bodyLen*Math.PI);ctx.beginPath();ctx.moveTo(x,yT*0.8);ctx.lineTo(x,-yT*0.8);ctx.stroke()}
+    var tailAngle=Math.sin(angle*0.08)*0.6;ctx.save();ctx.translate(bodyLen/2,0);ctx.rotate(tailAngle);ctx.beginPath();ctx.ellipse(12,0,16,10,0,0,Math.PI*2);ctx.fillStyle=color+'aa';ctx.fill();ctx.restore();
+    ctx.beginPath();ctx.arc(-bodyLen/2+8,0,3,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
+    ctx.beginPath();ctx.arc(-bodyLen/2+8,0,1.5,0,Math.PI*2);ctx.fillStyle='#000';ctx.fill();
+    ctx.beginPath();ctx.ellipse(0,-bodyW*0.4,bodyLen*0.4,3,0,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.12)';ctx.fill();
+    ctx.restore();angle+=0.5;requestAnimationFrame(draw);
   }
-  canvas.addEventListener("mousedown",function(e){dragging=true;lastX=e.clientX});
-  canvas.addEventListener("mousemove",function(e){if(dragging){angle+=(e.clientX-lastX)*0.3;lastX=e.clientX}});
-  canvas.addEventListener("mouseup",function(){dragging=false});
-  canvas.addEventListener("mouseleave",function(){dragging=false});
-  canvas.addEventListener("touchstart",function(e){dragging=true;lastX=e.touches[0].clientX},{passive:true});
-  canvas.addEventListener("touchmove",function(e){if(dragging){angle+=(e.touches[0].clientX-lastX)*0.3;lastX=e.touches[0].clientX}},{passive:true});
-  canvas.addEventListener("touchend",function(){dragging=false});
+  canvas.addEventListener('mousedown',function(e){dragging=true;lastX=e.clientX});
+  canvas.addEventListener('mousemove',function(e){if(dragging){angle+=(e.clientX-lastX)*0.3;lastX=e.clientX}});
+  canvas.addEventListener('mouseup',function(){dragging=false});
+  canvas.addEventListener('mouseleave',function(){dragging=false});
+  canvas.addEventListener('touchstart',function(e){dragging=true;lastX=e.touches[0].clientX},{passive:true});
+  canvas.addEventListener('touchmove',function(e){if(dragging){angle+=(e.touches[0].clientX-lastX)*0.3;lastX=e.touches[0].clientX}},{passive:true});
+  canvas.addEventListener('touchend',function(){dragging=false});
   draw();
 });
 
 /* === CART SYSTEM === */
 var cart=[],FREE_SHIP=75;
-var cartDrawer=document.getElementById("cart-drawer"),cartOverlay=document.getElementById("cart-overlay"),cartItems=document.getElementById("cart-items"),cartFooter=document.getElementById("cart-footer"),cartTotal=document.getElementById("cart-total-amount"),cartCount=document.getElementById("cart-count"),shippingFill=document.getElementById("shipping-fill"),shippingMsg=document.getElementById("shipping-msg");
+var cartDrawer=document.getElementById('cart-drawer'),cartOverlay=document.getElementById('cart-overlay'),cartItems=document.getElementById('cart-items'),cartFooter=document.getElementById('cart-footer'),cartTotal=document.getElementById('cart-total-amount'),cartCount=document.getElementById('cart-count'),shippingFill=document.getElementById('shipping-fill'),shippingMsg=document.getElementById('shipping-msg');
+
+function saveCart(){try{localStorage.setItem('tc_cart',JSON.stringify(cart))}catch(e){}}
+function loadCart(){try{var c=localStorage.getItem('tc_cart');if(c){cart=JSON.parse(c);updateCart()}}catch(e){}}
 
 function updateCart(){
   var total=0;cart.forEach(function(item){total+=item.price*item.qty});
   cartCount.textContent=cart.reduce(function(s,i){return s+i.qty},0);
-  if(cart.length===0){cartItems.innerHTML='<p class="cart-empty">Your cart is empty. Time to gear up, b\u2019y!</p>';cartFooter.style.display="none"}
-  else{var html="";cart.forEach(function(item,idx){html+='<div class="cart-item"><div class="cart-item-info"><strong>'+item.name+'</strong><br><small>$'+item.price.toFixed(2)+' x '+item.qty+'</small></div><div class="cart-item-actions"><button class="cart-qty-btn" onclick="changeQty('+idx+',-1)">-</button><span>'+item.qty+'</span><button class="cart-qty-btn" onclick="changeQty('+idx+',1)">+</button><button class="cart-remove" onclick="removeItem('+idx+')">&times;</button></div></div>'});cartItems.innerHTML=html;cartFooter.style.display="block"}
-  cartTotal.textContent="$"+total.toFixed(2);
-  var pct=Math.min(total/FREE_SHIP*100,100);shippingFill.style.width=pct+"%";
-  if(total>=FREE_SHIP)shippingMsg.innerHTML="<strong>\ud83c\udf89 FREE shipping unlocked!</strong>";
-  else shippingMsg.innerHTML="Add <strong>$"+(FREE_SHIP-total).toFixed(2)+"</strong> more for <strong>FREE shipping</strong> in Ontario!";
+  if(cart.length===0){cartItems.innerHTML='<p class="cart-empty">Your cart is empty. Time to gear up, b\u2019y!</p>';cartFooter.style.display='none'}
+  else{var html='';cart.forEach(function(item,idx){html+='<div class="cart-item"><div class="cart-item-info"><strong>'+item.name+'</strong><br><small>$'+item.price.toFixed(2)+' x '+item.qty+'</small></div><div class="cart-item-actions"><button class="cart-qty-btn" onclick="changeQty('+idx+',-1)">\u2212</button><span>'+item.qty+'</span><button class="cart-qty-btn" onclick="changeQty('+idx+',1)">+</button><button class="cart-remove" onclick="removeItem('+idx+')">&times;</button></div></div>'});cartItems.innerHTML=html;cartFooter.style.display='block'}
+  cartTotal.textContent='$'+total.toFixed(2);
+  var pct=Math.min(total/FREE_SHIP*100,100);shippingFill.style.width=pct+'%';
+  if(total>=FREE_SHIP)shippingMsg.innerHTML='<strong>\ud83c\udf89 FREE shipping unlocked!</strong>';
+  else shippingMsg.innerHTML='Add <strong>$'+(FREE_SHIP-total).toFixed(2)+'</strong> more for <strong>FREE shipping</strong> in Ontario!';
+  saveCart();
 }
 function changeQty(idx,d){cart[idx].qty+=d;if(cart[idx].qty<=0)cart.splice(idx,1);updateCart()}
 function removeItem(idx){cart.splice(idx,1);updateCart()}
 window.changeQty=changeQty;window.removeItem=removeItem;
 
-document.querySelectorAll(".add-to-cart").forEach(function(btn){
-  btn.addEventListener("click",function(){
-    var card=btn.closest(".product-card"),name=card.dataset.name,price=parseFloat(card.dataset.price);
+document.querySelectorAll('.add-to-cart').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var card=btn.closest('.product-card'),name=card.dataset.name,price=parseFloat(card.dataset.price);
     var existing=cart.find(function(i){return i.name===name});
     if(existing)existing.qty++;else cart.push({name:name,price:price,qty:1});
-    updateCart();cartDrawer.classList.add("open");cartOverlay.classList.add("open");
-    btn.textContent="\u2713 Added!";btn.classList.add("btn-success");
-    setTimeout(function(){btn.textContent="Add to Cart";btn.classList.remove("btn-success")},1200);
+    updateCart();cartDrawer.classList.add('open');cartOverlay.classList.add('open');
+    btn.textContent='\u2713 Added!';btn.classList.add('btn-success');
+    setTimeout(function(){btn.textContent='Add to Cart';btn.classList.remove('btn-success')},1200);
+    trackRecentlyViewed(card);
   });
 });
-document.getElementById("cart-btn").addEventListener("click",function(){cartDrawer.classList.toggle("open");cartOverlay.classList.toggle("open")});
-document.getElementById("cart-close").addEventListener("click",function(){cartDrawer.classList.remove("open");cartOverlay.classList.remove("open")});
-cartOverlay.addEventListener("click",function(){cartDrawer.classList.remove("open");cartOverlay.classList.remove("open")});
+
+document.getElementById('cart-btn').addEventListener('click',function(){cartDrawer.classList.toggle('open');cartOverlay.classList.toggle('open')});
+document.getElementById('cart-close').addEventListener('click',function(){cartDrawer.classList.remove('open');cartOverlay.classList.remove('open')});
+cartOverlay.addEventListener('click',function(){cartDrawer.classList.remove('open');cartOverlay.classList.remove('open')});
+loadCart();
+
+/* === QUICK VIEW === */
+(function(){
+  var modal=document.getElementById('quickview-modal'),overlay=document.getElementById('quickview-overlay'),closeBtn=document.getElementById('quickview-close');
+  var qvCanvas=document.getElementById('quickview-canvas'),qvCtx=qvCanvas.getContext('2d');
+  var qvAngle=0,qvDrag=false,qvLastX=0,qvColor='#b45309',qvAnimId=null;
+  var qvQty=1;
+
+  function openQuickView(card){
+    var name=card.dataset.name,price=card.dataset.price,desc=card.dataset.desc,size=card.dataset.size;
+    var colours=card.dataset.colours,bestfor=card.dataset.bestfor,technique=card.dataset.technique;
+    qvColor=card.querySelector('.product-3d').dataset.color;
+    document.getElementById('qv-name').textContent=name;
+    document.getElementById('qv-price').innerHTML='$'+price+' <small>CAD</small>';
+    document.getElementById('qv-desc').textContent=desc;
+    document.getElementById('qv-size').textContent=size;
+    document.getElementById('qv-colours').textContent=colours;
+    document.getElementById('qv-bestfor').textContent=bestfor;
+    document.getElementById('qv-technique').textContent=technique;
+    qvQty=1;document.getElementById('qv-qty').textContent='1';
+    modal.classList.add('modal-open');overlay.classList.add('modal-overlay-open');
+    document.body.style.overflow='hidden';
+    startQvAnim();
+    trackRecentlyViewed(card);
+  }
+
+  function closeQuickView(){modal.classList.remove('modal-open');overlay.classList.remove('modal-overlay-open');document.body.style.overflow='';if(qvAnimId)cancelAnimationFrame(qvAnimId)}
+
+  function startQvAnim(){
+    function draw(){
+      qvCtx.clearRect(0,0,320,320);qvCtx.save();qvCtx.translate(160,160);
+      qvCtx.beginPath();
+      var bodyLen=120,bodyW=22+Math.sin(qvAngle*0.05)*4;
+      for(var i=0;i<bodyLen;i++){var x=-bodyLen/2+i,y=Math.sin(i*0.12+qvAngle*0.03)*bodyW*Math.sin(i/bodyLen*Math.PI);if(i===0)qvCtx.moveTo(x,y);else qvCtx.lineTo(x,y)}
+      for(var i=bodyLen-1;i>=0;i--){var x=-bodyLen/2+i,y=-Math.sin(i*0.12+qvAngle*0.03)*bodyW*Math.sin(i/bodyLen*Math.PI);qvCtx.lineTo(x,y)}
+      qvCtx.closePath();
+      var grad=qvCtx.createLinearGradient(-80,0,80,0);grad.addColorStop(0,qvColor);grad.addColorStop(0.5,qvColor+'dd');grad.addColorStop(1,qvColor+'99');qvCtx.fillStyle=grad;qvCtx.fill();
+      qvCtx.strokeStyle='rgba(255,255,255,0.12)';qvCtx.lineWidth=1;
+      for(var r=0;r<bodyLen;r+=8){var x=-bodyLen/2+r,yT=Math.sin(r*0.12+qvAngle*0.03)*bodyW*Math.sin(r/bodyLen*Math.PI);qvCtx.beginPath();qvCtx.moveTo(x,yT*0.8);qvCtx.lineTo(x,-yT*0.8);qvCtx.stroke()}
+      var ta=Math.sin(qvAngle*0.08)*0.6;qvCtx.save();qvCtx.translate(bodyLen/2,0);qvCtx.rotate(ta);qvCtx.beginPath();qvCtx.ellipse(18,0,24,16,0,0,Math.PI*2);qvCtx.fillStyle=qvColor+'aa';qvCtx.fill();qvCtx.restore();
+      qvCtx.beginPath();qvCtx.arc(-bodyLen/2+12,0,5,0,Math.PI*2);qvCtx.fillStyle='#fff';qvCtx.fill();
+      qvCtx.beginPath();qvCtx.arc(-bodyLen/2+12,0,2.5,0,Math.PI*2);qvCtx.fillStyle='#000';qvCtx.fill();
+      qvCtx.restore();qvAngle+=0.5;qvAnimId=requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  qvCanvas.addEventListener('mousedown',function(e){qvDrag=true;qvLastX=e.clientX});
+  qvCanvas.addEventListener('mousemove',function(e){if(qvDrag){qvAngle+=(e.clientX-qvLastX)*0.3;qvLastX=e.clientX}});
+  qvCanvas.addEventListener('mouseup',function(){qvDrag=false});
+  qvCanvas.addEventListener('touchstart',function(e){qvDrag=true;qvLastX=e.touches[0].clientX},{passive:true});
+  qvCanvas.addEventListener('touchmove',function(e){if(qvDrag){qvAngle+=(e.touches[0].clientX-qvLastX)*0.3;qvLastX=e.touches[0].clientX}},{passive:true});
+  qvCanvas.addEventListener('touchend',function(){qvDrag=false});
+
+  document.getElementById('qv-minus').addEventListener('click',function(){if(qvQty>1){qvQty--;document.getElementById('qv-qty').textContent=qvQty}});
+  document.getElementById('qv-plus').addEventListener('click',function(){qvQty++;document.getElementById('qv-qty').textContent=qvQty});
+
+  document.getElementById('qv-add-btn').addEventListener('click',function(){
+    var name=document.getElementById('qv-name').textContent;
+    var priceText=document.getElementById('qv-price').textContent;
+    var price=parseFloat(priceText.replace('$','').replace(' CAD',''));
+    var existing=cart.find(function(i){return i.name===name});
+    if(existing)existing.qty+=qvQty;else cart.push({name:name,price:price,qty:qvQty});
+    updateCart();closeQuickView();
+    cartDrawer.classList.add('open');cartOverlay.classList.add('open');
+  });
+
+  document.querySelectorAll('.quick-view-btn').forEach(function(btn){btn.addEventListener('click',function(){openQuickView(btn.closest('.product-card'))})});
+  if(closeBtn)closeBtn.addEventListener('click',closeQuickView);
+  if(overlay)overlay.addEventListener('click',closeQuickView);
+})();
+
+/* === RECENTLY VIEWED === */
+function trackRecentlyViewed(card){
+  try{
+    var rv=JSON.parse(localStorage.getItem('tc_rv')||'[]');
+    var name=card.dataset.name,price=card.dataset.price;
+    rv=rv.filter(function(i){return i.name!==name});
+    rv.unshift({name:name,price:price});
+    if(rv.length>4)rv=rv.slice(0,4);
+    localStorage.setItem('tc_rv',JSON.stringify(rv));
+    renderRecentlyViewed();
+  }catch(e){}
+}
+function renderRecentlyViewed(){
+  try{
+    var rv=JSON.parse(localStorage.getItem('tc_rv')||'[]');
+    var container=document.getElementById('recently-viewed'),grid=document.getElementById('rv-grid');
+    if(rv.length===0){container.style.display='none';return}
+    container.style.display='block';
+    grid.innerHTML=rv.map(function(item){return '<div class="rv-item glass-card"><strong>'+item.name+'</strong><span>$'+item.price+' CAD</span></div>'}).join('');
+  }catch(e){}
+}
+renderRecentlyViewed();
 
 /* === PWA === */
-if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/baitworm/sw.js").then(function(){}).catch(function(){})})}
-var dp,ib=document.getElementById("install-btn"),ah=document.querySelector(".app-hint");window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;ib.style.display="inline-block";if(ah)ah.style.display="none"});if(ib){ib.addEventListener("click",function(){if(dp){dp.prompt();dp.userChoice.then(function(){dp=null;ib.style.display="none"})}})}if(ah&&!(/iPad|iPhone|iPod/.test(navigator.userAgent))){ah.style.display="none"}
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/baitworm/sw.js').then(function(){}).catch(function(){})})}
+var dp,ib=document.getElementById('install-btn'),ah=document.querySelector('.app-hint');
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;ib.style.display='inline-block';if(ah)ah.style.display='none'});
+if(ib){ib.addEventListener('click',function(){if(dp){dp.prompt();dp.userChoice.then(function(){dp=null;ib.style.display='none'})}})}
+if(ah&&!(/iPad|iPhone|iPod/.test(navigator.userAgent))){ah.style.display='none'}
 </script>
 </body>
 </html>
