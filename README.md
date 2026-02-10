@@ -1,122 +1,129 @@
-# 🍁 Baitworm Canada
+# 🎣 Three Cast Baits
 
-### Kingston, Ontario’s Premium Live Bait Worm Farm
+### Handcrafted Soft Plastics — Kingston, Ontario
 
-> **Freshly Farmed in Kingston, ON. Fish Approved.** 🇨🇦
-
----
-
-## About
-
-**Baitworm Canada** is a proudly Canadian live bait worm farming and distribution enterprise headquartered in **Kingston, Ontario**. We breed, raise, harvest, and sell premium-quality live bait worms to recreational anglers, fishing charter operators, bait shops, and sporting goods retailers across Canada.
-
-Located where the **St. Lawrence River meets Lake Ontario**, Kingston is one of Canada’s top freshwater fishing destinations. Our farm takes advantage of Eastern Ontario’s rich limestone soil, ideal moisture levels, and temperate climate.
-
-**Every worm we sell is 100% Canadian-raised. Never imported.**
-
----
-
-## Products
-
-| Product | Description | Packaging |
-|---------|-------------|-----------|
-| 🪱 Canadian Nightcrawlers | The legendary Canadian dew worm — #1 live bait in North America | Cups of 12, 24 / Flats of 250, 500 |
-| 🪱 European Nightcrawlers | Hardy, active worms perfect for Ontario’s variable climate | Cups of 24, 50 / Bulk |
-| 🔴 Red Wigglers | Popular for panfish, perch, and ice fishing on Rideau Canal | Cups of 30, 50 / Bulk by the pound |
-| 🌱 Vermicompost | Premium organic worm castings for Canadian gardens | 5 lb / 25 lb bags |
-| 📦 Subscription Bait Box | Monthly/seasonal curated live bait delivery | Monthly & Seasonal plans |
-| 🏢 Wholesale Programs | Supply agreements for Canadian bait shops & retailers | Custom volume pricing |
-
----
-
-## Why Baitworm Canada?
-
-- 🍁 **100% Canadian** — Bred and raised in Kingston, ON. Never imported.
-- ⭐ **Superior Quality** — Optimised conditions for the healthiest worms.
-- ♻️ **Eco-Friendly** — Recyclable and compostable packaging.
-- 🚚 **Fast Canadian Shipping** — Next-day in Eastern Ontario, 2-day across Ontario & Quebec.
-- ✅ **Freshness Guarantee** — 100% satisfaction or we make it right.
-- 🌿 **Sustainable Farming** — Fed recycled food waste and organic materials.
-
----
-
-## Business Details
-
-- **Headquarters:** Kingston, Ontario, Canada K7L
-- **Phone:** (613) 555-BAIT
-- **Email:** info@baitworm.ca
-- **Website:** [baitworm.ca](https://cxzyr9hm2t-del.github.io/baitworm/)
-- **Industry:** Canadian Recreational Fishing & Vermiculture
-- **Market Size:** $8.3B Canadian recreational fishing industry / 3.3M+ anglers
-
----
-
-## Service Areas
-
-Kingston • Ottawa • Toronto • Montreal • All of Ontario • Nationwide across Canada
-
-### Ontario Fishing Spots We Serve
-
-- Lake Ontario
-- St. Lawrence River
-- Rideau Canal
-- Bay of Quinte
-
----
-
-## Tech Stack
-
-- **Website:** HTML5, CSS3 (responsive)
-- **Mobile App:** React Native / Expo (iOS & Android)
-- **Hosting:** GitHub Pages
-- **Shipping:** Canada Post, Purolator
-
----
-
-## Project Structure
-
-```
-baitworm/
-├── index.html              # Main website
-├── css/
-│   └── style.css           # Canadian red & white theme
-├── mobile-app/
-│   ├── App.js              # React Native app entry
-│   ├── app.json            # Expo configuration
-│   └── package.json        # Dependencies
-└── README.md               # This file
-```
-
----
-
-## Mobile App
-
-The **Baitworm Canada** app is available for iOS and Android, built with React Native and Expo.
-
-**Features:**
-- Browse and order live bait products
-- Track deliveries across Canada
-- Find fishing spots in Ontario
-- Manage subscriptions
-- Contact support
-
-**Get Started:**
-```bash
-cd mobile-app
-npm install
-npx expo start
-```
-
----
-
-## Getting Started
-
-Visit our website: **[Baitworm Canada](https://cxzyr9hm2t-del.github.io/baitworm/)**
-
----
-
-## License
-
-© 2026 Baitworm Canada Ltd. All rights reserved.
-
-Proudly Canadian 🇨🇦 | Kingston, Ontario
+> **Born on the Rock. Built for the Water.**
+>
+> ---
+>
+> ## Our Story
+>
+> **Three Cast Baits** is a handcrafted soft plastic bait company founded by three brothers from **St. John's, Newfoundland**, now based in **Kingston, Ontario**. Every bait is designed, poured, and inspected by hand in Darryl's garage — no factory lines, no automation.
+>
+> We grew up jigging cod off the wharf and casting for trout around Signal Hill. When life brought us to Kingston, we found world-class freshwater fishing but couldn't find soft baits that met our standards. So we cleared out Darryl's garage and started pouring our own.
+>
+> **If it doesn't fish, it doesn't ship.**
+>
+> ---
+>
+> ## The Brothers
+>
+> | Role | Name | Responsibilities |
+> |------|------|-----------------|
+> | 🎨 The Creator | You | Product design, R&D, brand vision. Designs every bait shape, colour, and action. |
+> | 💼 The Investor | Darryl | Capital, finance, operations. Put up the garage and keeps the books straight. |
+> | 🏭 The Producer | Darren | Production, quality control, fulfillment. Pours every single bait on the line. |
+>
+> **Ownership: 33.3% · 33.3% · 33.3%** — Three brothers. Equal partners. No outside money.
+>
+> ---
+>
+> ## Soft Baits
+>
+> | Product | Description | Size |
+> |---------|-------------|------|
+> | 🪱 The Kingston Crawler | Signature 6" ribbed paddle tail worm — the one that started Three Cast | 6" · 8-pack |
+> | 🌊 Rideau Ribbon Tail | Classic ribbon tail, deadly on drop shot or Texas rig | 5" · 10-pack |
+> | 🐟 St. Lawrence Shad | Paddle tail swimbait with tight wobble, salt-loaded | 4" · 6-pack |
+> | 🪸 Quinte Craw | Compact creature bait with realistic claw action | 3.5" · 8-pack |
+> | ⚪ Signal Hill Grub | Straight-tail grub, simple and deadly on a jig head | 3" · 12-pack |
+> | 🎨 Custom Colour Pours | Your colour, your bait — Darren pours custom batches | Custom · Min 5 packs |
+>
+> ---
+>
+> ## Darryl's Garage — The Production Line
+>
+> Our entire operation runs from a double-car garage (24' x 24') in Kingston. Seven stations, from raw plastisol to packaged product:
+>
+> 1. **Raw Materials Storage** — Plastisol, colorants, salt, scent oils
+> 2. 2. **Mixing & Heating** — Presto pot, pyrex cups, 325-350°F
+>    3. 3. **Pouring Station** — Darren's domain: molds, injectors, gloves
+>       4. 4. **Cooling & Curing Rack** — 15 min cool, overnight cure
+>          5. 5. **Quality Check & Trimming** — Every bait inspected before packaging
+>             6. 6. **Packaging Station** — Resealable bags, header cards, heat sealer
+>                7. 7. **Finished Goods** — Organized by style and colour, ready to ship
+>                  
+>                   8. ---
+>                  
+>                   9. ## Pricing
+>                  
+>                   10. | Product | Price (CAD) |
+> |---------|-------------|
+> | The Kingston Crawler (8-pack) | $8.99 |
+> | Three Cast Starter Kit (4 packs) | $34.99 |
+> | Custom Colour Pour (per pack, min 5) | $12.99 |
+>
+> Free shipping on orders over $50 CAD within Ontario. Nationwide shipping via Canada Post.
+>
+> ---
+>
+> ## Tech Stack
+>
+> - **Website:** HTML5, CSS3 (responsive, Playfair Display + Inter)
+> - - **Mobile App:** React Native / Expo (iOS & Android)
+>   - - **Hosting:** GitHub Pages
+>     - - **PWA:** Service worker, manifest, offline support
+>       - - **Shipping:** Canada Post, Purolator
+>        
+>         - ---
+>
+> ## Project Structure
+>
+> ```
+> baitworm/
+> ├── index.html          # Main website — Three Cast Baits
+> ├── css/
+> │   └── style.css       # Earthy palette, responsive design
+> ├── icons/
+> │   └── icon.svg        # PWA app icon
+> ├── mobile-app/
+> │   ├── App.js          # React Native app
+> │   ├── app.json        # Expo config
+> │   └── package.json    # Dependencies
+> ├── manifest.json       # PWA manifest
+> ├── sw.js               # Service worker (v3)
+> └── README.md
+> ```
+>
+> ---
+>
+> ## Our Waters
+>
+> Kingston sits where the St. Lawrence River meets Lake Ontario — some of the best freshwater fishing in Canada:
+>
+> - Lake Ontario
+> - - St. Lawrence River
+>   - - Rideau Canal
+>     - - Bay of Quinte
+>       - - Charleston Lake
+>         - - Collins Bay
+>          
+>           - ---
+>
+> ## Contact
+>
+> - **Email:** info@threecast.ca
+> - - **Phone:** (613) 555-BAIT
+>   - - **HQ:** Kingston, Ontario, Canada K7L (Darryl's garage)
+>     - - **Hours:** Mon–Fri 7AM–5PM · Sat 7AM–12PM · Sundays: Gone fishing.
+>       - - **Website:** [threecast.ca](https://cxzyr9hm2t-del.github.io/baitworm/)
+>        
+>         - ---
+>
+> ## License
+>
+> © 2026 Three Cast Baits. All rights reserved.
+>
+> *Three brothers. One garage. Every bait poured by hand.*
+>
+> **Born on the Rock 🇨🇦 | Kingston, Ontario**
