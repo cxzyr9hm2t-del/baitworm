@@ -1442,4 +1442,33 @@ h2::after {
   .hero h1 {
     font-size: 2rem;
   }
+
+/* === SECTION WAVE DIVIDERS === */
+.section-divider {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+@media (max-width: 768px) {
+  .section-divider svg {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-divider svg {
+    height: 30px;
+  }
+}
+
 }
