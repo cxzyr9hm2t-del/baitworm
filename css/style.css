@@ -508,6 +508,7 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: rgba(28,28,28,0.95);
+}
 .nav-container { display: flex; justify-content: space-between; align-items: center; }
 .logo { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.5px;   white-space: nowrap;
   margin-right: 1rem;
@@ -1863,6 +1864,7 @@ h2::after {
   .hero h1 {
     font-size: 2rem;
   }
+}
 
 /* === SECTION WAVE DIVIDERS === */
 .section-divider {
