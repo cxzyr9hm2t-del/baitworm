@@ -118,7 +118,7 @@
   </div>
 </nav>
 
-<!-- ===== SEARCH PANEL ===== -->
+<!-- ===== SEARCH PANEL ===== -->h
 <div class="search-panel" id="search-panel">
   <div class="container">
     <div class="search-inner">
@@ -171,7 +171,6 @@
     <div class="trust-item">
       <span class="trust-num" data-count="2847">0</span>
       <span class="trust-label">Packs Shipped</span>
-    </div>
     <div class="trust-item">
       <span class="trust-num" data-count="412">0</span>
       <span class="trust-label">Happy Anglers</span>
@@ -200,7 +199,7 @@
                                   <div class="hero-card animate-on-scroll"><span class="hero-icon">&#128274;</span><h4>Correctional Officers</h4><p>Respect and support for the men and women who serve behind the walls. Your work matters.</p></div>
                                   <div class="hero-card animate-on-scroll"><span class="hero-icon">&#128658;</span><h4>Fire &amp; EMS</h4><p>To every firefighter and paramedic who runs toward danger &mdash; we've got your back, b'y.</p></div>
                         </div>
-                      <div class="responder-discount animate-on-scroll" style="margin-top:2.5rem;"><h3>&#127809; First Responder &amp; Military Discount</h3><div class="discount-amount">15% OFF</div><p>Active duty, veterans, police, corrections, fire &amp; EMS &mdash; use code <strong style="color:#d81e2b;">HEROES15</strong>strong> at checkout. Thank you for your service to Canada.</p></div>
+                      <div class="responder-discount animate-on-scroll" style="margin-top:2.5rem;"><h3>&#127809; First Responder &amp; Military Discount</h3><div class="discount-amount">15% OFF</div><p>Active duty, veterans, police, corrections, fire &amp; EMS &mdash; use code <strong style="color:#d81e2b;">HEROES15</strong> at checkout. Thank you for your service to Canada.</p></div>
               </div>
       </section>
     <div class="canada-ribbon"></div>
@@ -1949,5 +1948,156 @@ initCookies();initA11y();initChat();initGallery();initCountdowns();initWishlist(
 
 })();
 </script>
+
+  <!-- ===== HIDPI CANVAS & VISUAL UPGRADE ===== -->
+  <script>
+    (function(){
+        /* HiDPI Canvas Upgrade — renders all canvases at device pixel ratio for crisp visuals */
+        var dpr = window.devicePixelRatio || 1;
+        if (dpr <= 1) dpr = 2; /* Force minimum 2x for highest resolution */
+
+        function upgradeCanvas(canvas) {
+              if (!canvas || canvas.dataset.hidpi === 'true') return;
+              var ctx = canvas.getContext('2d');
+              if (!ctx) return;
+              var rect = canvas.getBoundingClientRect();
+              var w = rect.width || canvas.width;
+              var h = rect.height || canvas.height;
+              if (w === 0 || h === 0) return;
+              canvas.width = w * dpr;
+              canvas.height = h * dpr;
+              canvas.style.width = w + 'px';
+              canvas.style.height = h + 'px';
+              ctx.scale(dpr, dpr);
+              canvas.dataset.hidpi = 'true';
+              canvas.dataset.dpr = dpr;
+        }
+
+        /* Upgrade hero-waves canvas */
+        function upgradeHeroWaves() {
+              var heroCanvas = document.getElementById('hero-waves');
+              if (heroCanvas) {
+                      var rect = heroCanvas.getBoundingClientRect();
+                      if (rect.width > 0) {
+                                heroCanvas.width = rect.width * dpr;
+                                heroCanvas.height = rect.height * dpr;
+                                heroCanvas.style.width = rect.width + 'px';
+                                heroCanvas.style.height = rect.height + 'px';
+                                var ctx = heroCanvas.getContext('2d');
+                                if (ctx) ctx.scale(dpr, dpr);
+                                heroCanvas.dataset.hidpi = 'true';
+                      }
+              }
+        }
+
+        /* Upgrade bait canvases with higher resolution rendering */
+        function upgradeBaitCanvases() {
+              var canvases = document.querySelectorAll('canvas.bait-canvas');
+              canvases.forEach(function(canvas) {
+                      if (canvas.dataset.hidpi === 'true') return;
+                      var targetSize = 260; /* match CSS upgrade */
+                      canvas.width = targetSize * dpr;
+                      canvas.height = targetSize * dpr;
+                      canvas.style.width = targetSize + 'px';
+                      canvas.style.height = targetSize + 'px';
+                      var ctx = canvas.getContext('2d');
+                      if (ctx) {
+                                ctx.scale(dpr, dpr);
+                                ctx.imageSmoothingEnabled = true;
+                                ctx.imageSmoothingQuality = 'high';
+                      }
+                      canvas.dataset.hidpi = 'true';
+                      canvas.dataset.dpr = dpr;
+              });
+        }
+
+        /* Upgrade quickview canvas */
+        function upgradeQuickviewCanvas() {
+              var qvCanvas = document.getElementById('quickview-canvas');
+              if (qvCanvas) {
+                      var targetSize = 400;
+                      qvCanvas.width = targetSize * dpr;
+                      qvCanvas.height = targetSize * dpr;
+                      qvCanvas.style.width = targetSize + 'px';
+                      qvCanvas.style.height = targetSize + 'px';
+                      var ctx = qvCanvas.getContext('2d');
+                      if (ctx) {
+                                ctx.scale(dpr, dpr);
+                                ctx.imageSmoothingEnabled = true;
+                                ctx.imageSmoothingQuality = 'high';
+                      }
+                      qvCanvas.dataset.hidpi = 'true';
+              }
+        }
+
+        /* Override native canvas getContext to auto-apply HiDPI scaling */
+        var origGetContext = HTMLCanvasElement.prototype.getContext;
+        HTMLCanvasElement.prototype.getContext = function(type, attrs) {
+              var ctx = origGetContext.call(this, type, attrs);
+              if (type === '2d' && ctx && !this.dataset.contextPatched) {
+                      this.dataset.contextPatched = 'true';
+                      ctx.imageSmoothingEnabled = true;
+                      if (ctx.imageSmoothingQuality !== undefined) {
+                                ctx.imageSmoothingQuality = 'high';
+                      }
+              }
+              return ctx;
+        };
+
+        /* Run upgrades after DOM is ready and content is painted */
+        function runUpgrades() {
+              upgradeHeroWaves();
+              upgradeBaitCanvases();
+              upgradeQuickviewCanvas();
+        }
+
+        /* Trigger redraw of bait canvases after upgrade */
+        function triggerBaitRedraw() {
+              if (typeof window.drawAllBaits === 'function') {
+                      window.drawAllBaits();
+              } else if (typeof window.renderBaits === 'function') {
+                      window.renderBaits();
+              }
+              /* Also dispatch a resize event to trigger any responsive canvas code */
+              window.dispatchEvent(new Event('resize'));
+        }
+
+        if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', function() {
+                      setTimeout(function() { runUpgrades(); triggerBaitRedraw(); }, 500);
+              });
+        } else {
+              setTimeout(function() { runUpgrades(); triggerBaitRedraw(); }, 500);
+        }
+
+        /* Re-upgrade on window resize for responsive handling */
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+              clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(function() {
+                      upgradeHeroWaves();
+              }, 250);
+        });
+
+        /* MutationObserver to catch dynamically added canvases */
+        var observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(m) {
+                      m.addedNodes.forEach(function(node) {
+                                if (node.tagName === 'CANVAS') {
+                                            setTimeout(function() { upgradeCanvas(node); }, 100);
+                                }
+                                if (node.querySelectorAll) {
+                                            node.querySelectorAll('canvas').forEach(function(c) {
+                                                          setTimeout(function() { upgradeCanvas(c); }, 100);
+                                            });
+                                }
+                      });
+              });
+        });
+        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+
+    })();
+  </script>
+
 </body>
 </html>
